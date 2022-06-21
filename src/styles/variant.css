@@ -1,0 +1,9 @@
+:root {
+  --color-white: white;
+  --color-black: #373c3e;
+  --color-smoke: #585f64;
+  --color-gray: rgb(150, 150, 150);
+  --color-line: rgb(201, 201, 201);
+  --font-noto: 'Noto Serif JP', serif;
+  --font-inter: 'Inter', sans-serif;
+}

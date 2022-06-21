@@ -1,0 +1,48 @@
+@tailwind utilities;
+@layer utilities {
+  .grid-list {
+    @apply grid grid-cols-[20rem_1fr_22rem_8rem_10rem] gap-x-8;
+  }
+  .grid-detail {
+    @apply grid grid-cols-[1fr_32rem] gap-x-16;
+  }
+  .table-row {
+    @apply grid grid-cols-[1fr_11rem];
+  }
+  .grid-footer {
+    @apply grid grid-cols-[30rem_34rem_34rem] gap-3;
+  }
+}
+
+@layer utilities {
+  .head-xl {
+    @apply text-[9.0rem] font-[600] text-zinc-700 font-avenir leading-[9rem] tracking-normal;
+  }
+  .head-l {
+    @apply text-[3rem] font-[600] text-zinc-700 font-helvetica tracking-wide leading-[1.2];
+  }
+  .para-l {
+    @apply text-[1.4rem] font-[400];
+  }
+  .para-m {
+    @apply text-[1.3rem];
+  }
+  .para-s {
+    @apply text-[1.2rem];
+  }
+  .para-xs {
+    @apply text-[1.1rem] tracking-wider;
+  }
+  .note {
+    @apply text-[1.2rem] font-metro tracking-widest font-medium;
+  }
+  .note-s {
+    @apply text-[1.2rem] font-metro tracking-wide;
+  }
+  .note-xs {
+    @apply text-[1rem] font-metro tracking-wide;
+  }
+  .number {
+    @apply tracking-wider;
+  }
+}
