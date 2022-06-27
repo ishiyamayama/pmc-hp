@@ -30,7 +30,6 @@ export const getStaticProps = async () => {
   const { links } = await fetchLinks()
   return {
     props: { posts, bio, dataTable, photos, links },
-    revalidate: 500,
   }
 }
 
