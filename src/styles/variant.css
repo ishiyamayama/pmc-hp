@@ -1,9 +1,13 @@
 :root {
-  --color-white: white;
-  --color-black: #373c3e;
-  --color-smoke: #585f64;
-  --color-gray: rgb(150, 150, 150);
-  --color-line: rgb(201, 201, 201);
+  --color-white: #fff;
+  --color-black: #000;
+  --color-border: #808080;
+  --color-gray: #c2c9cc;
+  --color-yellow: #f5d849;
+  --color-brown: #b28f6b;
+  --color-blue: #3d87cc;
+  --color-orange: #ff5c38;
+  --color-green: #36b943;
   --font-noto: 'Noto Serif JP', serif;
   --font-inter: 'Inter', sans-serif;
 }

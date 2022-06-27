@@ -4,12 +4,13 @@
   ],
   "rules": {
     "import/order": [
-      "error",
+      "warn",
       {
         "alphabetize": {
           "order": "asc"
         }
       }
-    ]
+    ],
+    "@next/next/no-img-element": "off"
   }
 }

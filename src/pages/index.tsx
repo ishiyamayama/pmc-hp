@@ -1,22 +1,37 @@
 import { Editor, styled, Inputs } from '@compai/css-gui'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { getContents } from 'libs/api'
+import { Profile } from 'components/organisms'
+import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks } from 'lib/api'
 import { guiStyleState } from 'stores/guiStyle'
-import { List, Client, Raw } from 'types'
+import { LinksContentType, PostContentType, BiographyContentType, DataTableContentType, PhotosContentType } from 'types'
 
-const Top = ({ lists }: { lists: List[] }) => {
-  const guiStyle = useRecoilValue(guiStyleState)
+type Props = {
+  posts: PostContentType[]
+  bio: BiographyContentType
+  dataTable: DataTableContentType[]
+  photos: PhotosContentType[]
+  links: LinksContentType[]
+}
+
+const Top = ({ posts, bio, dataTable, photos, links }: Props) => {
   return (
-    <div className='grid w-full min-h-full text-black'>
-      <styled.p styles={guiStyle}>アイウエオ</styled.p>
-    </div>
+    <>
+      <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
+    </>
   )
 }
 
 export const getStaticProps = async () => {
-  const { lists } = await getContents()
-  return { props: { lists } }
+  const { posts } = await fetchPosts()
+  const { bio } = await fetchBiography()
+  const { dataTable } = await fetchDataTable()
+  const { photos } = await fetchPhotos()
+  const { links } = await fetchLinks()
+  return {
+    props: { posts, bio, dataTable, photos, links },
+    revalidate: 500,
+  }
 }
 
 export default Top

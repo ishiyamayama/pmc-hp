@@ -1,16 +1,7 @@
 @tailwind utilities;
 @layer utilities {
-  .grid-list {
-    @apply grid grid-cols-[20rem_1fr_22rem_8rem_10rem] gap-x-8;
-  }
-  .grid-detail {
-    @apply grid grid-cols-[1fr_32rem] gap-x-16;
-  }
-  .table-row {
-    @apply grid grid-cols-[1fr_11rem];
-  }
-  .grid-footer {
-    @apply grid grid-cols-[30rem_34rem_34rem] gap-3;
+  .grid-head {
+    @apply grid w-full grid-cols-[22.7%_48.5%_22.7%] justify-between
   }
 }
 

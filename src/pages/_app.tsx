@@ -16,7 +16,8 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     })
   }, [router])
   const canonicalUrl = (config.baseUrl + (router.asPath === '/' ? '' : router.asPath)).split('?')[0]
-  const postPage = router.asPath.split('/')[2] === '' || typeof router.asPath.split('/')[2] === 'undefined' ? false : true
+  const postPage =
+    router.asPath.split('/')[2] === '' || typeof router.asPath.split('/')[2] === 'undefined' ? false : true
   const slug = router.asPath === '/' ? 'top' : router.asPath.split('/')[1]
   return (
     <>
