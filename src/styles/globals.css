@@ -13,6 +13,12 @@ html {
   }
 }
 
+@media screen and (min-width: 2040px) {
+  html {
+    font-size: 70%;
+  }
+}
+
 body {
   font-feature-settings: 'palt';
   background-color: none !important;
@@ -87,6 +93,26 @@ body,
   border: solid 1px var(--color-black);
 }
 
-.css-1jy4zmz-ChannelFields span {
+[data-radix-popper-content-wrapper] > div > div > div > div:nth-child(2) span {
   padding-right: 0.2rem;
+}
+
+[data-radix-portal] > div > div > div[role='listbox'] {
+  border: solid 1px var(--color-text);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background: var(--color-background);
+  overflow: hidden;
+}
+
+[data-radix-select-viewport] > div {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  color: var(--color-text);
+  outline: none !important;
+}
+
+[data-radix-select-viewport] > div:hover {
+  background: var(--color-text) !important;
+  color: var(--color-background) !important;
 }
