@@ -12,7 +12,7 @@
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
-    "@compai/css-gui": "^0.0.127",
+    "@compai/css-gui": "0.0.127",
     "newt-client-js": "^3.0.2",
     "next": "12.1.5",
     "next-head-seo": "^0.1.3",

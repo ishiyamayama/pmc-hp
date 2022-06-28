@@ -1,10 +1,12 @@
 html {
-  background-color: white;
   font-size: 62.5%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background) !important;
+  color: var(--color-text) !important;
 }
+
 @media screen and (min-width: 1800px) {
   html {
     font-size: 0.5554vw;
@@ -12,8 +14,9 @@ html {
 }
 
 body {
-  background-color: white;
   font-feature-settings: 'palt';
+  background-color: none !important;
+  color: var(--color-text);
   /* font-family: var(--font-noto); */
   /* text-underline-offset: 0px; */
   font-size: 1.4rem;
@@ -25,18 +28,21 @@ body,
   height: 100%;
   min-height: 100%;
 }
+/* main {
+  font-family: var(--font-noto);
+} */
 
-.css-vpzt6m-ColorPopover {
-  background-color: var(--color-background) !important;
-  color: var(--color-text) !important;
+[data-radix-popper-content-wrapper] > div {
+  background-color: var(--color-white) !important;
+  color: var(--color-black) !important;
   border-radius: 4px;
-  border: solid 1px var(--color-text) !important;
+  border: solid 1px var(--color-black) !important;
 }
 
-.css-vpzt6m-ColorPopover input,
-.css-vpzt6m-ColorPopover button {
+[data-radix-popper-content-wrapper] input,
+[data-radix-popper-content-wrapper] button {
   margin: 0;
-  color: var(--color-text) !important;
+  color: var(--color-black) !important;
   font-family: var(--font-inter) !important;
   line-height: 1;
   height: 2rem;
@@ -44,62 +50,43 @@ body,
   align-items: center;
   font-size: 1rem;
   text-align: left;
-  border: solid 1px var(--color-text);
+  border: solid 1px var(--color-black);
   border-radius: 4px;
-  background: var(--color-background);
+  background: var(--color-white);
   padding: 0 0.4rem;
 }
 
-.css-vpzt6m-ColorPopover select:focus-visible,
-.css-vpzt6m-ColorPopover input:focus-visible,
-.css-vpzt6m-ColorPopover button:focus-visible {
+[data-radix-popper-content-wrapper] select:focus-visible,
+[data-radix-popper-content-wrapper] input:focus-visible,
+[data-radix-popper-content-wrapper] button:focus-visible {
   outline: none !important;
 }
 
-.css-vpzt6m-ColorPopover [class$='ColorPicker2'] {
+[data-radix-popper-content-wrapper] > div > div > div:first-child {
   display: none;
 }
 
-.css-vpzt6m-ColorPopover .css-1yvzh41-ColorPicker {
-  background: var(--color-background);
-  color: var(--color-text) !important;
+[data-radix-popper-content-wrapper] > div > div > div > div:nth-child(1) select {
+  background: var(--color-white);
+  color: var(--color-black) !important;
   font-family: var(--font-inter) !important;
   border-radius: 4px;
-  border: solid 1px var(--color-text);
+  border: solid 1px var(--color-black);
   height: 2rem;
   font-size: 1rem;
   padding: 0;
 }
 
-.css-vpzt6m-ColorPopover .css-1f52ntj-ColorValueDisplay {
+[data-radix-popper-content-wrapper] > div > div > div > div:nth-child(1) > div:nth-child(1) > div {
+  min-width: 2rem !important;
+  border: none;
+}
+[data-radix-popper-content-wrapper] > div > div > div > div:nth-child(1) > div:nth-child(1) > div div {
   min-width: 2rem !important;
   border-radius: 4px;
-  border: solid 1px var(--color-text);
-  overflow: hidden;
+  border: solid 1px var(--color-black);
 }
 
 .css-1jy4zmz-ChannelFields span {
   padding-right: 0.2rem;
-}
-
-.css-llfsa2-FontFamilyInput {
-  background-color: var(--color-background) !important;
-  border: solid 1px var(--color-text) !important;
-  width: 100% !important;
-  left: 0 !important;
-  top: -2px !important;
-  border-radius: 0px 0px 2px 2px;
-}
-
-.css-llfsa2-FontFamilyInput li {
-  background-color: var(--color-background) !important;
-  color: var(--color-text) !important;
-}
-.css-llfsa2-FontFamilyInput li:hover {
-  background-color: var(--color-text) !important;
-  color: var(--color-background) !important;
-}
-
-.css-1cmbgr6-EditorControls {
-  padding-bottom: 0 !important;
 }

@@ -6,9 +6,8 @@ type Props = { children?: React.ReactNode }
 
 const AppLayout = ({ children }: Props) => {
   const guiStyle = useRecoilValue(guiStyleState)
-  const wrapperStyle = { backgroundColor: guiStyle.backgroundColor }
   const innerStyle = {
-    fontFamily: guiStyle.fontFamily,
+    fontFamily: `"${guiStyle.fontFamily}" , var(--font-noto)`,
     fontSize: `${guiStyle.fontSize.value}${guiStyle.fontSize.unit}`,
     letterSpacing: `${guiStyle.letterSpacing.value}${guiStyle.letterSpacing.unit}`,
     lineHeight: `${guiStyle.lineHeight.value}${guiStyle.lineHeight.unit}`,
@@ -19,7 +18,7 @@ const AppLayout = ({ children }: Props) => {
     document.documentElement.style.setProperty('--color-background', guiStyle.backgroundColor)
   }, [guiStyle])
   return (
-    <div className='min-h-full p-[5rem]' style={wrapperStyle}>
+    <div className='min-h-full p-[5rem]'>
       <ColorScheme />
       <Header />
       <main style={innerStyle}>{children}</main>

@@ -14,17 +14,17 @@ type Props = {
 export const Profile = ({ bio, dataTable, photos, links }: Props) => {
   const guiStyle = useRecoilValue(guiStyleState)
   const [currentPhoto, setCurrentPhoto] = useState(0)
-  const listItemClass = 'w-[37%] min-w-[10rem]'
+  const listItemClass = 'min-w-[37%] pr-2'
   const LinkItem = ({ link }: { link: LinksContentType }) => (
     <li className={listItemClass}>
-      <a href={link.url} target='_blank' key={link._id} rel='noreferrer' className='underline text-text'>
+      <a href={link.url} target='_blank' rel='noreferrer' className='underline text-text'>
         {link.name}
       </a>
     </li>
   )
 
   return (
-    <div className='text-black mt-[6rem] grid-head items-start'>
+    <div className='mt-[6rem] grid-head items-start'>
       <div className='aspect-[305/228] relative mt-2'>
         {photos.map((photo, index) => (
           <img
@@ -40,31 +40,33 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
         ))}
       </div>
       <div>
-        <styled.p styles={guiStyle}>{bio.japanese}</styled.p>
-        <styled.div styles={guiStyle}>--</styled.div>
-        <styled.p styles={guiStyle}>{bio.english}</styled.p>
+        <p>{bio.japanese}</p>
+        <div>--</div>
+        <p>{bio.english}</p>
       </div>
       <div className='grid gap-y-[3.2rem]'>
-        <ul className='mt-2 border-t border-opacity-50 border-text'>
+        <ul className='relative mt-2'>
+          <span className='bg-text h-[1px] absolute w-full left-0 top-0 opacity-50' />
           {dataTable.map((data) => (
-            <li key={data._id} className='flex items-center p-[11px_0_10px] border-b border-text border-opacity-50'>
+            <li key={data._id} className='relative flex flex-wrap items-center p-[11px_0_10px]'>
               <p className={listItemClass}>
-                <styled.span styles={guiStyle}>{data.title}</styled.span>
+                <span>{data.title}</span>
               </p>
               <p className={listItemClass}>
-                <styled.span styles={guiStyle}>{data.body}</styled.span>
+                <span>{data.body}</span>
               </p>
+              <span className='bg-text h-[1px] absolute w-full left-0 bottom-0 opacity-50' />
             </li>
           ))}
         </ul>
         <ul className='flex flex-wrap gap-y-[.9rem]'>
-          {links.map((link) => link.type === 'music' && <LinkItem link={link} />)}
+          {links.map((link) => link.type === 'music' && <LinkItem link={link} key={link._id} />)}
         </ul>
         <ul className='flex flex-wrap gap-y-[.9rem]'>
-          {links.map((link) => link.type === 'sns' && <LinkItem link={link} />)}
+          {links.map((link) => link.type === 'sns' && <LinkItem link={link} key={link._id} />)}
         </ul>
         <ul className='flex flex-wrap gap-y-[.9rem]'>
-          {links.map((link) => link.type === 'other' && <LinkItem link={link} />)}
+          {links.map((link) => link.type === 'other' && <LinkItem link={link} key={link._id} />)}
         </ul>
       </div>
     </div>
