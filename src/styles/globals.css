@@ -116,3 +116,8 @@ body,
   background: var(--color-text) !important;
   color: var(--color-background) !important;
 }
+
+td{
+  padding: 9px 0 10px;
+  vertical-align:middle;
+}

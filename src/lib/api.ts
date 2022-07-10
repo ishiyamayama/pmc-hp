@@ -9,7 +9,7 @@ const newtClient = createClient({
 })
 
 export const fetchPosts = async () => {
-  const { items } = await newtClient.getContents<PostContentType[]>({
+  const { items } = await newtClient.getContents<PostContentType>({
     appUid: process.env.APP_UID_POSTS as string,
     modelUid: 'post',
     query: { depth: 1, limit: 1000 },
@@ -17,17 +17,26 @@ export const fetchPosts = async () => {
   return { posts: items }
 }
 
+export const fetchPostById = async (id: string) => {
+  const post = await newtClient.getContent<PostContentType>({
+    appUid: process.env.APP_UID_POSTS as string,
+    modelUid: 'post',
+    contentId: id,
+  })
+  return { post }
+}
+
 export const fetchCategory = async () => {
-  const { items } = await newtClient.getContents<CategoryContentType[]>({
+  const { items } = await newtClient.getContents<CategoryContentType>({
     appUid: process.env.APP_UID_POSTS as string,
     modelUid: 'category',
-    query: { depth: 1, limit: 1000 },
+    query: { depth: 1, limit: 1000, order: ['createdAt'] },
   })
-  return { category: items }
+  return { categories: items }
 }
 
 export const fetchLinks = async () => {
-  const { items } = await newtClient.getContents<LinksContentType[]>({
+  const { items } = await newtClient.getContents<LinksContentType>({
     appUid: process.env.APP_UID_PROFILE as string,
     modelUid: 'links',
     query: { depth: 1, limit: 1000 },
@@ -49,7 +58,7 @@ export const fetchBiography = async () => {
 }
 
 export const fetchDataTable = async () => {
-  const { items } = await newtClient.getContents<DataTableContentType[]>({
+  const { items } = await newtClient.getContents<DataTableContentType>({
     appUid: process.env.APP_UID_PROFILE as string,
     modelUid: 'datatable',
     query: { depth: 1, limit: 1000 },
@@ -58,7 +67,7 @@ export const fetchDataTable = async () => {
 }
 
 export const fetchPhotos = async () => {
-  const { items } = await newtClient.getContents<PhotosContentType[]>({
+  const { items } = await newtClient.getContents<PhotosContentType>({
     appUid: process.env.APP_UID_PROFILE as string,
     modelUid: 'photo',
     query: { depth: 1, order: ['sortOrder'], limit: 1000 },

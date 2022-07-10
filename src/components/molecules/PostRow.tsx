@@ -1,0 +1,40 @@
+import NextLink from 'next/link'
+import { categoryColors } from 'const/categoryColors'
+import { PostContentType } from 'types'
+
+type PropsType = {
+  post: PostContentType
+  currentPost?: boolean
+}
+
+export const PostRow = ({ post, currentPost }: PropsType) => {
+  const { category, title, date, body, hideList, coverImage } = post
+  const dateString = new Date(date).toLocaleDateString()
+
+  return (
+    <article>
+      <NextLink href={currentPost ? '/' : `/${post.slug}`} passHref scroll={false}>
+        <a className='p-[.9rem_0] grid-post'>
+          <time>{dateString}</time>
+          <h2>{title}</h2>
+          <span>{category.name}</span>
+          <span className='min-w-[1.5rem]'>
+            <img className='w-[1.5rem] block object-cover aspect-[1/1]' src={coverImage.src} alt='' />
+          </span>
+          <span className='min-w-[1.5rem]'>
+            <span
+              className={`ml-auto w-[1.5rem] block object-cover aspect-[1/1] bg-${categoryColors[category.name]}`}
+            />
+          </span>
+        </a>
+      </NextLink>
+      {currentPost && (
+        <div className='mt-[1.8rem] grid-body pb-[5rem]'>
+          <div />
+          <div dangerouslySetInnerHTML={{ __html: body }}></div>
+          <img className='block' src={coverImage.src} alt='' />
+        </div>
+      )}
+    </article>
+  )
+}

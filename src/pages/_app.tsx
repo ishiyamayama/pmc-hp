@@ -16,19 +16,18 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     })
   }, [router])
   const canonicalUrl = (config.baseUrl + (router.asPath === '/' ? '' : router.asPath)).split('?')[0]
-  const postPage =
-    router.asPath.split('/')[2] === '' || typeof router.asPath.split('/')[2] === 'undefined' ? false : true
+  const postPage = router.asPath === '/' || router.asPath.includes('/post/')
   const slug = router.asPath === '/' ? 'top' : router.asPath.split('/')[1]
   return (
     <>
       <NextHeadSeo
-        title={postPage ? '' : meta[slug].title}
-        description={postPage ? '' : meta[slug].description}
+        title={postPage ? '' : meta[slug]?.title}
+        description={postPage ? '' : meta[slug]?.description}
         canonical={canonicalUrl}
         twitter={{ card: 'summary_large_image', site: '' }}
         og={{
-          title: postPage ? '' : meta[slug].title,
-          description: postPage ? '' : meta[slug].description,
+          title: postPage ? '' : meta[slug]?.title,
+          description: postPage ? '' : meta[slug]?.description,
           image: config.ogImage,
           siteName: config.siteName,
         }}

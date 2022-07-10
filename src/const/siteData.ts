@@ -9,18 +9,6 @@ export const meta: StringKeyObject = {
     title: config.siteName,
     description: '',
   },
-  'activity-log': {
-    title: 'アクティビティログ | ' + config.siteName,
-    description: '',
-  },
-  topics: {
-    title: 'トピックス | ' + config.siteName,
-    description: '',
-  },
-  member: {
-    title: '共創メンバー | ' + config.siteName,
-    description: '',
-  },
   404: {
     title: '404 Not Found | ' + config.siteName,
     description: '',

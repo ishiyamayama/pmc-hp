@@ -1,6 +1,6 @@
-import { styled } from '@compai/css-gui'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import { Divider } from 'components/atoms'
 import { guiStyleState } from 'stores/guiStyle'
 import { LinksContentType, BiographyContentType, DataTableContentType, PhotosContentType } from 'types'
 
@@ -46,17 +46,19 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
       </div>
       <div className='grid gap-y-[3.2rem]'>
         <ul className='relative mt-2'>
-          <span className='bg-text h-[1px] absolute w-full left-0 top-0 opacity-50' />
+          <Divider />
           {dataTable.map((data) => (
-            <li key={data._id} className='relative flex flex-wrap items-center p-[11px_0_10px]'>
-              <p className={listItemClass}>
-                <span>{data.title}</span>
-              </p>
-              <p className={listItemClass}>
-                <span>{data.body}</span>
-              </p>
-              <span className='bg-text h-[1px] absolute w-full left-0 bottom-0 opacity-50' />
-            </li>
+            <Fragment key={data._id}>
+              <li className='relative flex flex-wrap items-center p-[11px_0_10px]'>
+                <p className={listItemClass}>
+                  <span>{data.title}</span>
+                </p>
+                <p className={listItemClass}>
+                  <span>{data.body}</span>
+                </p>
+              </li>
+              <Divider />
+            </Fragment>
           ))}
         </ul>
         <ul className='flex flex-wrap gap-y-[.9rem]'>

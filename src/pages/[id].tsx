@@ -1,5 +1,13 @@
 import { Posts, Profile } from 'components/organisms'
-import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory } from 'lib/api'
+import {
+  fetchPostById,
+  fetchPosts,
+  fetchBiography,
+  fetchDataTable,
+  fetchPhotos,
+  fetchLinks,
+  fetchCategory,
+} from 'lib/api'
 import {
   CategoryContentType,
   PostContentType,
@@ -12,22 +20,30 @@ import {
 type Props = {
   categories: CategoryContentType[]
   posts: PostContentType[]
+  currentId: string
   bio: BiographyContentType
   dataTable: DataTableContentType[]
   photos: PhotosContentType[]
   links: LinksContentType[]
 }
 
-const Top = ({ categories, posts, bio, dataTable, photos, links }: Props) => {
+const Detail = ({ categories, posts, currentId, bio, dataTable, photos, links }: Props) => {
   return (
     <>
       <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
-      <Posts categories={categories} posts={posts} />
+      <Posts currentId={currentId} categories={categories} posts={posts} />
     </>
   )
 }
 
-export const getStaticProps = async () => {
+export const getStaticPaths = async () => {
+  const { posts } = await fetchPosts()
+  const paths = posts.map((content) => `/${content.slug}`)
+  return { paths, fallback: 'blocking' }
+}
+
+export const getStaticProps = async (context: { params: { id: string } }) => {
+  const currentId = context.params.id
   const { categories } = await fetchCategory()
   const { posts } = await fetchPosts()
   const { bio } = await fetchBiography()
@@ -35,9 +51,9 @@ export const getStaticProps = async () => {
   const { photos } = await fetchPhotos()
   const { links } = await fetchLinks()
   return {
-    props: { categories, posts, bio, dataTable, photos, links },
+    props: { categories, posts, currentId, bio, dataTable, photos, links },
     revalidate: 120,
   }
 }
 
-export default Top
+export default Detail
