@@ -51,7 +51,7 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
         <CategoryButton
           categoryName='All'
           onClick={() => handleClickCategory('')}
-          currentCategory={currentCategory}
+          current={currentCategory === ''}
           order={0}
           disabled={singleView}
         />
@@ -60,7 +60,7 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
             key={category._id}
             categoryName={category.name}
             onClick={() => handleClickCategory(category.name)}
-            currentCategory={currentCategory}
+            current={currentCategory === category.name}
             order={category.order}
             disabled={singleView}
           />

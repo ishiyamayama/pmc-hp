@@ -29,7 +29,7 @@ export const PostRow = ({ post, currentPost }: PropsType) => {
         </a>
       </NextLink>
       {currentPost && (
-        <div className='mt-[1.6rem] grid-body pb-[5rem]'>
+        <div className='mt-[1rem] grid-body pb-[5rem]'>
           <div />
           <div className='body' dangerouslySetInnerHTML={{ __html: body }} />
           <img className='block' src={coverImage.src} alt='' />
