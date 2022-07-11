@@ -25,8 +25,7 @@ body {
   background-color: none !important;
   color: var(--color-text);
   overscroll-behavior-y: none;
-  /* font-family: var(--font-noto); */
-  /* text-underline-offset: 0px; */
+  word-break: break-all;
   font-size: 1.4rem;
 }
 
