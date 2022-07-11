@@ -1,5 +1,6 @@
 import NextLink from 'next/link'
 import { categoryColors } from 'const/categoryColors'
+import style from 'styles/modules/body.module.sass'
 import { PostContentType } from 'types'
 
 type PropsType = {
@@ -10,10 +11,9 @@ type PropsType = {
 export const PostRow = ({ post, currentPost }: PropsType) => {
   const { category, title, date, body, hideList, coverImage } = post
   const dateString = new Date(date).toLocaleDateString()
-
   return (
     <article>
-      <NextLink href={currentPost ? '/' : `/${post.slug}`} passHref scroll={false}>
+      <NextLink href={currentPost && !hideList ? '/' : `/${post.slug}`} passHref scroll={false}>
         <a className='p-[.9rem_0] grid-post'>
           <time>{dateString}</time>
           <h2>{title}</h2>
@@ -29,9 +29,9 @@ export const PostRow = ({ post, currentPost }: PropsType) => {
         </a>
       </NextLink>
       {currentPost && (
-        <div className='mt-[1.8rem] grid-body pb-[5rem]'>
+        <div className='mt-[1.6rem] grid-body pb-[5rem]'>
           <div />
-          <div dangerouslySetInnerHTML={{ __html: body }}></div>
+          <div dangerouslySetInnerHTML={{ __html: body }} className={style.body} />
           <img className='block' src={coverImage.src} alt='' />
         </div>
       )}

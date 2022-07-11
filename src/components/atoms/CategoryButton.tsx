@@ -1,15 +1,15 @@
 type PropsType = {
   categoryName: string
   onClick?: () => void
-  currentcategory: string
+  currentCategory: string
   order?: number
   disabled?: boolean
 }
 
-export const CategoryButton = ({ categoryName, onClick, currentcategory, order, disabled }: PropsType) => (
+export const CategoryButton = ({ categoryName, onClick, currentCategory, order, disabled }: PropsType) => (
   <button
     className={`relative p-[.2rem_.6rem_.3rem_.6rem] rounded-lg leading-[1.2] hover:opacity-60
-    ${categoryName === currentcategory ? 'bg-white' : 'bg-[#E6E6E6]'}
+    ${categoryName === currentCategory ? 'bg-white' : 'bg-[#E6E6E6]'}
     ${disabled ? 'opacity-60 !bg-[#E6E6E6]' : ''}
     `}
     onClick={onClick}
