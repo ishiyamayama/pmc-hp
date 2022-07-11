@@ -12,7 +12,7 @@ export const PostRow = ({ post, currentPost }: PropsType) => {
   const { category, title, date, body, hideList, coverImage } = post
   const dateString = new Date(date).toLocaleDateString()
   return (
-    <article>
+    <article className={style.article}>
       <NextLink href={currentPost && !hideList ? '/' : `/${post.slug}`} passHref scroll={false}>
         <a className='p-[.9rem_0] grid-post'>
           <time>{dateString}</time>
@@ -31,7 +31,7 @@ export const PostRow = ({ post, currentPost }: PropsType) => {
       {currentPost && (
         <div className='mt-[1.6rem] grid-body pb-[5rem]'>
           <div />
-          <div dangerouslySetInnerHTML={{ __html: body }} className={style.body} />
+          <div className='body' dangerouslySetInnerHTML={{ __html: body }} />
           <img className='block' src={coverImage.src} alt='' />
         </div>
       )}
