@@ -1,0 +1,38 @@
+.article
+  [class='body']
+    >*:not(:first-child)
+      margin: 1em 0 0
+
+    h1,h2,h3,h4,h5,h6
+      font-weight: 700
+      line-height: initial
+
+    h1
+      font-size: 1.8em
+    h2
+      font-size: 1.6em
+    h3
+      font-size: 1.4em
+    h4
+      font-size: 1.2em
+    h5,h6
+      font-size: 1em
+
+    >ul
+      list-style: inside square
+      padding-left: .3em
+
+      li em
+        margin-left: -.5em
+
+    >ol
+      list-style: inside number
+      padding-left: .2em
+
+    img
+      max-width: 100%
+
+    iframe
+      max-width: 100%
+      width: 100%
+      aspect-ratio: 16/9

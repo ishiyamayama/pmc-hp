@@ -4,10 +4,10 @@
     @apply grid w-full grid-cols-[22.7%_48.5%_22.7%] justify-between;
   }
   .grid-post {
-    @apply grid gap-x-[4rem] w-full grid-cols-[14%_1fr_14%_5.5%_5.5%] justify-between items-center;
+    @apply grid gap-x-[4rem] w-full grid-cols-[14%_1fr_10%_5.5%_5.5%] justify-between items-start;
   }
   .grid-body {
-    @apply grid gap-x-[4rem] w-full grid-cols-[14%_1fr_calc(25%+8rem)] justify-between items-start;
+    @apply grid gap-x-[4rem] w-full grid-cols-[14%_1fr_calc(21%+8rem)] justify-between items-start;
   }
 }
 
