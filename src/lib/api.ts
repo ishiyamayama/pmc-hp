@@ -45,16 +45,15 @@ export const fetchLinks = async () => {
 }
 
 export const fetchBiography = async () => {
-  const bio = await newtClient.getContent<BiographyContentType>({
+  const { items } = await newtClient.getContents<BiographyContentType>({
     appUid: process.env.APP_UID_PROFILE as string,
     modelUid: 'biography',
-    contentId: '62a8e8107fea960018b01e44',
     query: {
       japanese: { fmt: 'text' },
       english: { fmt: 'text' },
     },
   })
-  return { bio }
+  return { bio: items[0] }
 }
 
 export const fetchDataTable = async () => {
