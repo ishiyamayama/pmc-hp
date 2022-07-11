@@ -18,10 +18,15 @@ const AppLayout = ({ children }: Props) => {
     document.documentElement.style.setProperty('--color-background', guiStyle.backgroundColor)
   }, [guiStyle])
   return (
-    <div className='min-h-full p-[5rem]'>
+    <div className='min-h-full p-[5rem_5rem_20rem]'>
       <ColorScheme />
       <Header />
-      <main style={innerStyle}>{children}</main>
+      <main style={innerStyle}>
+        {children}
+        <small translate='no' className='mt-[10rem] block'>
+          PASOCOM MUSIC CLUB©2022
+        </small>
+      </main>
     </div>
   )
 }
