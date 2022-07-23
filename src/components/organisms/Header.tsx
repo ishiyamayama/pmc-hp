@@ -13,22 +13,37 @@ import style from 'styles/modules/editor.module.sass'
 export const Header = () => {
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
   const ref = useRef<HTMLDivElement>(null)
+  const inputsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (ref.current) {
       const inputs: NodeListOf<HTMLInputElement> = ref.current?.querySelectorAll('input')
-      inputs.forEach((input) => {
-        input.addEventListener('pointerdown', (e) => {
-          e.stopPropagation()
-        })
+
+      inputs.forEach((input, index) => {
+        input.addEventListener('pointerdown', (e) => e.stopPropagation())
+        input.addEventListener('keydown', (e) => e.stopPropagation())
+        index > 0 &&
+          input.addEventListener('input', (e) => {
+            const { value } = e.target as HTMLInputElement
+            if (value === 'Na' || value === 'N/A' || value === 'N/a' || value === '') {
+              input.value = ''
+            }
+          })
+        index > 0 && ((input.type = 'number'), (input.min = '0'))
       })
       return () => {
         if (ref.current) {
           const inputs: NodeListOf<HTMLInputElement> = ref.current?.querySelectorAll('input')
-          inputs.forEach((input) => {
-            input.removeEventListener('pointerdown', (e) => {
-              e.stopPropagation()
-            })
+          inputs.forEach((input, index) => {
+            input.removeEventListener('pointerdown', (e) => e.stopPropagation())
+            input.removeEventListener('keydown', (e) => e.stopPropagation())
+            index > 0 &&
+              input.removeEventListener('input', (e) => {
+                const { value } = e.target as HTMLInputElement
+                if (value === 'Na' || value === 'N/A' || value === 'N/a' || value === '') {
+                  input.value = ''
+                }
+              })
           })
         }
       }

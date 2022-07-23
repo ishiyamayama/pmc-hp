@@ -45,6 +45,7 @@ body,
 }
 
 [data-radix-popper-content-wrapper] > div {
+  font-family: var(--font-inter);
   background-color: var(--color-white) !important;
   color: var(--color-black) !important;
   border-radius: 4px;
@@ -67,6 +68,9 @@ body,
   background: var(--color-white);
   padding: 0 0.4rem;
 }
+[data-radix-popper-content-wrapper] span{
+  font-weight: 500 !important;
+}
 
 [data-radix-popper-content-wrapper] select:focus-visible,
 [data-radix-popper-content-wrapper] input:focus-visible,
@@ -76,6 +80,10 @@ body,
 
 [data-radix-popper-content-wrapper] > div > div > div:first-child {
   display: none;
+}
+
+[data-radix-popper-content-wrapper] > div > div > div:nth-child(2) > div > div {
+  overflow: visible;
 }
 
 [data-radix-popper-content-wrapper] > div > div > div > div:nth-child(1) select {
