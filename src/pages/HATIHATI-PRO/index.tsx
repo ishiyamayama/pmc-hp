@@ -10,7 +10,7 @@ const Overview = ({ overview }: Props) => {
   return (
     <div className='mt-[6rem] md:mt-16 mdMin:grid-head'>
       <h1 className='text-[24px] mdMin:pt-[1rem]'>HATIHATI PRO.</h1>
-      <div className='mt-16'>
+      <div className='md:mt-16'>
         <div className={style.article} dangerouslySetInnerHTML={{ __html: overview.body }} />
       </div>
     </div>
