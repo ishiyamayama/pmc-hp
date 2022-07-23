@@ -17,7 +17,9 @@ export const PostRow = ({ post, currentId }: PropsType) => {
 
   useEffect(() => {
     if (isCurrent && ref.current) {
-      ref.current.offsetTop + ref.current.offsetHeight < window.scrollY && window.scrollTo(0, ref.current.offsetTop)
+      ref.current.offsetTop + ref.current.offsetHeight < window.scrollY || window.scrollY === 0
+        ? window.scrollTo(0, ref.current.offsetTop - 10)
+        : null
     }
   }, [isCurrent, post.slug])
 
