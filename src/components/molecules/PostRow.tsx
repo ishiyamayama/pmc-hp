@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon'
 import NextLink from 'next/link'
 import { useEffect, useRef } from 'react'
 import { categoryColors } from 'const/categoryColors'
@@ -11,7 +12,7 @@ type PropsType = {
 
 export const PostRow = ({ post, currentId }: PropsType) => {
   const { category, title, date, body, hideList, coverImage } = post
-  const dateString = new Date(date).toLocaleDateString()
+  const dateString = DateTime.fromISO(date).setZone('Asia/Tokyo').toLocaleString()
   const isCurrent = currentId === post.slug
   const ref = useRef<HTMLAnchorElement>(null)
 
