@@ -9,6 +9,10 @@ export const meta: StringKeyObject = {
     title: config.siteName,
     description: 'ここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキスト',
   },
+  "HATIHATI-PRO": {
+    title: 'HATIHATI-PRO. | ' + config.siteName,
+    description: '株式会社HATIHATI PRO. (HATIHATI PRO. Co., Ltd.)',
+  },
   404: {
     title: '404 Not Found | ' + config.siteName,
     description: '',

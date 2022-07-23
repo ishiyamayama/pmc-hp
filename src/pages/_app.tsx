@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   }, [router])
   const canonicalUrl = (config.baseUrl + (router.asPath === '/' ? '' : router.asPath)).split('?')[0]
   const slug = router.asPath === '/' ? 'top' : router.asPath.split('/')[1]
-  console.log(canonicalUrl)
+
   return (
     <>
       <NextHeadSeo
