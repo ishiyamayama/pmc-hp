@@ -25,7 +25,40 @@ export const PostRow = ({ post, currentId }: PropsType) => {
 
   return (
     <article className={style.article} id={`${post.slug}`}>
-
+      <NextLink href={isCurrent && !hideList ? '/' : `/${post.category.slug}/${post.slug}`} passHref scroll={false}>
+        <a className='p-[.9rem_0] md:p-[1rem_0] grid-post' ref={ref}>
+          <time>{dateString}</time>
+          <h2>1st{title}</h2>
+          <span className='md:hidden'>{category.name}</span>
+          <span className='md:hidden min-w-[1em] flex mt-[.2em]'>
+            {coverImage && (
+              <img className='w-full max-w-[1.25em] block object-cover aspect-[1/1]' src={coverImage.src} alt='' />
+            )}
+          </span>
+          <span className='min-w-[1em] md:min-w-[1.5rem] flex mt-[.2em]'>
+            <span
+              className={`ml-auto w-full max-w-[1.25em] block object-cover aspect-[1/1] bg-${
+                categoryColors[category.name]
+              }`}
+            />
+          </span>
+        </a>
+      </NextLink>
+      {/* {isCurrent && (
+        <div className='mt-[1rem] mdMin:grid-body pb-[5rem]'>
+          <div className='md:hidden' />
+          <div className='body' dangerouslySetInnerHTML={{ __html: body }} />
+          {coverImage && (
+            <img
+              className='block md:mt-20'
+              src={coverImage.src}
+              width={coverImage.width}
+              height={coverImage.height}
+              alt=''
+            />
+          )}
+        </div>
+      )} */}
     </article>
   )
 }
