@@ -9,6 +9,12 @@
   width: 100%
   display: grid
   row-gap: .6rem
+  @media screen and (max-width: 800px)
+    display: flex
+    justify-content: space-between
+
+    >div
+      width: calc(50% - 1.2rem)
 
   >div>div
     padding: .1rem 0 0
@@ -30,6 +36,8 @@
             width: 4rem
             padding-left: .5rem
             padding-bottom: 0rem
+            @media screen and (max-width: 800px)
+            width: 3rem
 
     input,button
       margin: 0
@@ -46,6 +54,9 @@
       background: none
       padding: 0 .4rem
       outline: none !important
+      &:focus-visible
+        border-color: blue
+        box-shadow: 0 0 0 1px blue
 
   span[role="label"]
     display: block
@@ -82,7 +93,6 @@
       margin: 0 !important
       width: 100% !important
 
-
       &:hover
         background-color: var(--color-text) !important
         color: var(--color-background) !important
@@ -97,7 +107,8 @@
   button
     width: 2.4rem !important
     height: 2.4rem !important
-    border: none !important
+    border: solid 1px var(--color-text)
+    border-radius: 4px !important
     overflow: hidden !important
     padding: 0 !important
     color: rgba(0,0,0,0) !important
@@ -111,7 +122,28 @@
       border: none !important
       z-index: 1 !important
       >div
-        border: solid 1px var(--color-text) !important
-        border-radius: 4px !important
+        border: none !important
+        border-radius: 0px !important
       >div:nth-child(2)
         position: absolute
+
+.backgroundColor >div >div:nth-child(1) span[role="label"]
+  color: rgba(0,0,0,0) !important
+  position: relative
+  &::before
+    content: "Background Color"
+    position: absolute
+    top: 0
+    left: 0
+    color: var(--color-text)
+
+.color >div >div:nth-child(1) span[role="label"]
+  color: rgba(0,0,0,0) !important
+  position: relative
+  left: -1px
+  &::before
+    content: "Text Color"
+    position: absolute
+    top: 0
+    left: 0
+    color: var(--color-text)

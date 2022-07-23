@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Posts, Profile } from 'components/organisms'
 import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory } from 'lib/api'
 import {

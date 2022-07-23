@@ -14,17 +14,18 @@ export const fetchPosts = async () => {
     modelUid: 'post',
     query: { depth: 1, limit: 1000 },
   })
+  items.sort((a, b) => (a.date > b.date ? -1 : 1))
   return { posts: items }
 }
 
-export const fetchPostById = async (id: string) => {
-  const post = await newtClient.getContent<PostContentType>({
-    appUid: process.env.APP_UID_POSTS as string,
-    modelUid: 'post',
-    contentId: id,
-  })
-  return { post }
-}
+// export const fetchPostById = async (id: string) => {
+//   const post = await newtClient.getContent<PostContentType>({
+//     appUid: process.env.APP_UID_POSTS as string,
+//     modelUid: 'post',
+//     contentId: id,
+//   })
+//   return { post }
+// }
 
 export const fetchCategory = async () => {
   const { items } = await newtClient.getContents<CategoryContentType>({
@@ -32,6 +33,15 @@ export const fetchCategory = async () => {
     modelUid: 'category',
     query: { depth: 1, limit: 1000, order: ['createdAt'] },
   })
+  items.sort((a, b) => {
+    if (a.order > b.order) {
+      return -1
+    }
+    if (a.order < b.order) {
+      return 1
+    }
+    return 0
+  }).reverse()
   return { categories: items }
 }
 

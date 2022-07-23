@@ -11,5 +11,7 @@ export interface PostContentType extends Content {
   coverImage: {
     _id: string
     src: string
+    width: number
+    height: number
   }
 }

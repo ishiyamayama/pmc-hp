@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { RecoilRoot } from 'recoil'
 import { AppLayout } from 'components/templates/AppLayout'
 import { config, meta } from 'const/siteData'
-import 'styles/main.css'
+import 'styles/main.sass'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           image: config.ogImage,
           siteName: config.siteName,
         }}
+        customMetaTags={[{ name: 'viewport', content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0' }]}
       />
       <RecoilRoot>
         <AppLayout>

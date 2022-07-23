@@ -24,6 +24,8 @@ module.exports = {
         gray: 'var(--color-gray)',
         yellow: 'var(--color-yellow)',
         orange: 'var(--color-orange)',
+        'theme-text': 'var(--color-theme-text)',
+        'theme-bg': 'var(--color-theme-bg)',
       },
       fontFamily: {
         noto: 'var(--font-noto)',

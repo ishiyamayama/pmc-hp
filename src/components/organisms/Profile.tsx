@@ -16,7 +16,7 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
   const [currentPhoto, setCurrentPhoto] = useState(0)
   const listItemClass = 'min-w-[37%] pr-2'
   const LinkItem = ({ link }: { link: LinksContentType }) => (
-    <li className={listItemClass}>
+    <li className={`${listItemClass} md:min-w-[44%]`}>
       <a href={link.url} target='_blank' rel='noreferrer' className='underline text-text'>
         {link.name}
       </a>
@@ -24,12 +24,12 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
   )
 
   return (
-    <div className='mt-[6rem] grid-head items-start'>
-      <div className='aspect-[305/228] relative mt-2'>
+    <div className='mt-[6rem] md:mt-11 mdMin:grid-head items-start'>
+      <div className='aspect-[305/228] relative mt-2 bg-lime-600 md:w-[60%] md:max-w-[320px]'>
         {photos.map((photo, index) => (
           <img
             className={`absolute top-0 left-0 object-cover w-full h-full cursor-pointer
-            ${index === currentPhoto ? 'opacity-100' : 'opacity-0'}`}
+            ${index === currentPhoto ? 'opacity-0' : 'opacity-0'}`}
             src={photo.image.src}
             alt={photo.title}
             key={photo.image._id}
@@ -39,17 +39,17 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
           />
         ))}
       </div>
-      <div>
+      <div className='md:mt-12'>
         <p>{bio.japanese}</p>
         <div>--</div>
         <p>{bio.english}</p>
       </div>
-      <div className='grid gap-y-[3.2rem]'>
+      <div className='md:mt-[1.4rem] grid gap-y-[3.2rem] md:gap-y-8'>
         <ul className='relative mt-2'>
           <Divider />
           {dataTable.map((data) => (
             <Fragment key={data._id}>
-              <li className='relative flex flex-wrap items-center p-[11px_0_10px]'>
+              <li className='relative flex flex-wrap items-center p-[11px_0_10px] md:p-[9px_0_11px]'>
                 <p className={listItemClass}>
                   <span>{data.title}</span>
                 </p>
@@ -61,13 +61,13 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
             </Fragment>
           ))}
         </ul>
-        <ul className='flex flex-wrap gap-y-[.9rem]'>
+        <ul className='flex flex-wrap gap-y-[.9rem] md:justify-between'>
           {links.map((link) => link.type === 'music' && <LinkItem link={link} key={link._id} />)}
         </ul>
-        <ul className='flex flex-wrap gap-y-[.9rem]'>
+        <ul className='flex flex-wrap gap-y-[.9rem] md:justify-between'>
           {links.map((link) => link.type === 'sns' && <LinkItem link={link} key={link._id} />)}
         </ul>
-        <ul className='flex flex-wrap gap-y-[.9rem]'>
+        <ul className='flex flex-wrap gap-y-[.9rem] md:justify-between'>
           {links.map((link) => link.type === 'other' && <LinkItem link={link} key={link._id} />)}
         </ul>
       </div>

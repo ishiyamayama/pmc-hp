@@ -24,9 +24,10 @@ body {
   font-feature-settings: 'palt';
   background-color: none !important;
   color: var(--color-text);
+  font-family: var(--font-noto);
   overscroll-behavior-y: none;
   word-break: break-all;
-  font-size: 1.4rem;
+  font-size: 12px;
 }
 
 html,
@@ -34,10 +35,14 @@ body,
 #__next {
   height: 100%;
   min-height: 100%;
+  line-height: 160%;
 }
-/* main {
-  font-family: var(--font-noto);
-} */
+
+:focus-visible {
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-blue) !important;
+}
 
 [data-radix-popper-content-wrapper] > div {
   background-color: var(--color-white) !important;
@@ -111,6 +116,8 @@ body,
   padding-bottom: 2px !important;
   color: var(--color-text);
   outline: none !important;
+  font-family: var(--font-inter) !important;
+  box-shadow: none !important;
 }
 
 [data-radix-select-viewport] > div:hover {
@@ -118,7 +125,7 @@ body,
   color: var(--color-background) !important;
 }
 
-td{
+td {
   padding: 9px 0 10px;
-  vertical-align:middle;
+  vertical-align: middle;
 }

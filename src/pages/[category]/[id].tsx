@@ -1,13 +1,5 @@
 import { Posts, Profile } from 'components/organisms'
-import {
-  fetchPostById,
-  fetchPosts,
-  fetchBiography,
-  fetchDataTable,
-  fetchPhotos,
-  fetchLinks,
-  fetchCategory,
-} from 'lib/api'
+import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory } from 'lib/api'
 import {
   CategoryContentType,
   PostContentType,
@@ -38,7 +30,7 @@ const Detail = ({ categories, posts, currentId, bio, dataTable, photos, links }:
 
 export const getStaticPaths = async () => {
   const { posts } = await fetchPosts()
-  const paths = posts.map((content) => `/${content.slug}`)
+  const paths = posts.map((content) => `/${content.category.slug}/${content.slug}`)
   return { paths, fallback: 'blocking' }
 }
 

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import * as Scroll from 'react-scroll'
+import { useRouter } from 'next/router'
+import { useEffect, useState, useRef, Fragment } from 'react'
 import { useRecoilState } from 'recoil'
 import { CategoryButton, Divider } from 'components/atoms'
 import { PostRow } from 'components/molecules'
@@ -13,8 +13,10 @@ type PostsProps = {
 }
 
 export const Posts = ({ currentId, categories, posts }: PostsProps) => {
+  const router = useRouter()
   const [currentCategory, setCurrentCategory] = useRecoilState(categoryState)
   const [viewPosts, setViewPosts] = useState<PostContentType[]>(posts)
+  const [exit, setExit] = useState(false)
 
   useEffect(() => {
     if (currentCategory !== '') {
@@ -30,20 +32,23 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
 
   const handleClickCategory = (category: string) => {
     if (currentCategory === category) {
-      setCurrentCategory('All')
+      setCurrentCategory('')
     } else {
       setCurrentCategory(category)
     }
   }
+
+  const useCategoryArray = posts.map((post) => {
+    return !post.hideList && post.category.name
+  })
+
   // useEffect(() => {
-  //   if (currentPost) {
-  //     Scroll.scroller.scrollTo(currentPost._id, {
-  //       duration: 0,
-  //       delay: 0,
-  //       offset: -62,
-  //     })
+  //   console.log(window.scrollY, 'inn')
+  //   alert(window.scrollY)
+  //   return () => {
+  //     alert(window.scrollY)
   //   }
-  // }, [currentPost])
+  // }, [router])
 
   return (
     <section className='mt-24'>
@@ -55,16 +60,18 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
           order={0}
           disabled={singleView}
         />
-        {categories.map((category) => (
-          <CategoryButton
-            key={category._id}
-            categoryName={category.name}
-            onClick={() => handleClickCategory(category.name)}
-            current={currentCategory === category.name}
-            order={category.order}
-            disabled={singleView}
-          />
-        ))}
+        {categories.map((category) => {
+          return useCategoryArray.includes(category.name) ? (
+            <CategoryButton
+              key={category._id}
+              categoryName={category.name}
+              onClick={() => handleClickCategory(category.name)}
+              current={currentCategory === category.name}
+              order={category.order}
+              disabled={singleView}
+            />
+          ) : null
+        })}
       </div>
       <div className='mt-8'>
         <Divider />
@@ -72,10 +79,10 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
           if (singleView && post.slug !== currentId) return null
           if (!singleView && post.hideList) return null
           return (
-            <Scroll.Element name={post._id} key={post._id}>
-              <PostRow post={post} currentPost={post === currentPost} />
+            <Fragment key={post._id}>
+              <PostRow post={post} currentId={currentId} />
               <Divider />
-            </Scroll.Element>
+            </Fragment>
           )
         })}
       </div>
