@@ -1,4 +1,7 @@
+import { htmlToText } from 'html-to-text'
+import NextHeadSeo from 'next-head-seo'
 import { Posts, Profile } from 'components/organisms'
+import { config, meta } from 'const/siteData'
 import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory } from 'lib/api'
 import {
   CategoryContentType,
@@ -20,8 +23,27 @@ type Props = {
 }
 
 const Detail = ({ categories, posts, currentId, bio, dataTable, photos, links }: Props) => {
+  const currentPost = posts.find((post) => post.slug === currentId)
+  const description = htmlToText(currentPost?.body || '', {
+    singleNewLineParagraphs: true,
+    selectors: [
+      { selector: 'img', format: 'skip' },
+      { selector: 'iframe', format: 'skip' },
+    ],
+  }).slice(0, 700)
+
   return (
     <>
+      <NextHeadSeo
+        title={currentPost?.title + ' | ' + config.siteName}
+        description={description}
+        twitter={{ card: 'summary_large_image' }}
+        og={{
+          title: currentPost?.title,
+          description: description,
+          image: currentPost?.coverImage?.src || config.ogImage,
+        }}
+      />
       <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
       <Posts currentId={currentId} categories={categories} posts={posts} />
     </>
@@ -37,6 +59,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: { params: { id: string } }) => {
   const currentId = context.params.id
   const { categories } = await fetchCategory()
+  // const { post } = await fetchPostById(currentId)
   const { posts } = await fetchPosts()
   const { bio } = await fetchBiography()
   const { dataTable } = await fetchDataTable()

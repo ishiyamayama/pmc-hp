@@ -18,7 +18,7 @@ const AppLayout = ({ children }: Props) => {
     document.documentElement.style.setProperty('--color-background', guiStyle.backgroundColor)
   }, [guiStyle])
   return (
-    <div className='min-h-full p-[5rem_5rem_20rem] lg:mdMin:p-[4rem_2.5rem_16rem] md:p-[0rem_1.5rem_7.2rem]'>
+    <div className='min-h-full p-[5rem_5rem_5rem] lg:mdMin:p-[4rem_2.5rem_5rem] md:p-[0rem_1.5rem_2rem]'>
       <ColorScheme />
       <Header />
       <main style={innerStyle}>

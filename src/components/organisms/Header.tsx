@@ -66,8 +66,8 @@ export const Header = () => {
         >
           <div ref={ref} className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex text-text font-inter relative`}>
             <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
-              <h1>
-                <Link href='/' className='mdMin:py-1 w-full max-w-[28.5rem] md:w-[26.2rem]'>
+              <h1 className='mdMin:py-1'>
+                <Link href='/' className='w-full max-w-[28.5rem] md:w-[26.2rem]'>
                   <Logo />
                 </Link>
               </h1>
@@ -104,6 +104,7 @@ export const Header = () => {
                 className='w-[7.5rem] h-[3rem] rounded-full
             border border-current font-inter text-[1rem]
             md:absolute md:right-0 md:top-[14.8rem] md:w-[7.2rem]
+            focus-visible:text-background focus-visible:bg-text
             hover:text-background hover:bg-text'
                 onClick={() => setGuiStyle(defaultStyles)}
               >

@@ -26,7 +26,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
   return (
     <article className={style.article} id={`${post.slug}`}>
       <NextLink href={isCurrent && !hideList ? '/' : `/${post.category.slug}/${post.slug}`} passHref scroll={false}>
-        <a className='p-[.9rem_0] md:p-[1rem_0] grid-post' ref={ref}>
+        <a className={`p-[.9rem_0] md:p-[1rem_0] grid-post hover:opacity-60 focus-visible:text-[blue] !outline-none`} ref={ref}>
           <time>{dateString}</time>
           <h2>{title}</h2>
           <span className='md:hidden'>{category.name}</span>

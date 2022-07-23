@@ -16,39 +16,20 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
   const [viewPosts, setViewPosts] = useState<PostContentType[]>(posts)
   const [searchValue, setSearchValue] = useState('')
   const inputsRef = useRef<HTMLInputElement>(null)
-  const ref = useRef<HTMLDivElement>(null)
+  const currentPost = posts.find((post) => post.slug === currentId)
+  const singleView = currentPost?.hideList
 
   useEffect(() => {
     if (currentCategory !== '') {
       const newPosts = posts.filter((post) => post.category.name === currentCategory)
       setViewPosts(newPosts)
-    } else {
-      setViewPosts(posts)
     }
+    currentCategory === '' && setViewPosts(posts)
   }, [currentCategory, posts])
 
-  const currentPost = posts.find((post) => post.slug === currentId)
-  const singleView = currentPost?.hideList
-
-  const handleClickCategory = (category: string) => {
-    if (currentCategory === category) {
-      setCurrentCategory('')
-    } else {
-      setCurrentCategory(category)
-    }
-  }
-
-  const useCategoryArray = posts.map((post) => {
-    return !post.hideList && post.category.name
-  })
-
-  // useEffect(() => {
-  //   console.log(window.scrollY, 'inn')
-  //   alert(window.scrollY)
-  //   return () => {
-  //     alert(window.scrollY)
-  //   }
-  // }, [router])
+  const handleClickCategory = (category: string) =>
+    currentCategory === category ? setCurrentCategory('') : setCurrentCategory(category)
+  const useCategoryArray = posts.map((post) => !post.hideList && post.category.name)
 
   return (
     <section className='mt-24'>
@@ -76,7 +57,7 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
         </div>
         <div>
           <input
-            className='w-full px-2 border border-gray-300 border-solid rounded-lg bg-background'
+            className='w-full border border-gray-300 border-solid rounded-lg bg-background p-[.2rem_.6rem_.3rem_.6rem] leading-[1.2]'
             type='text'
             placeholder='Search'
             value={searchValue}

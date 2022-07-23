@@ -16,18 +16,18 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     })
   }, [router])
   const canonicalUrl = (config.baseUrl + (router.asPath === '/' ? '' : router.asPath)).split('?')[0]
-  const postPage = router.asPath === '/' || router.asPath.includes('/post/')
   const slug = router.asPath === '/' ? 'top' : router.asPath.split('/')[1]
+  console.log(canonicalUrl)
   return (
     <>
       <NextHeadSeo
-        title={postPage ? '' : meta[slug]?.title}
-        description={postPage ? '' : meta[slug]?.description}
+        title={meta[slug]?.title}
+        description={meta[slug]?.description}
         canonical={canonicalUrl}
-        twitter={{ card: 'summary', site: '' }}
+        twitter={{ card: 'summary' }}
         og={{
-          title: postPage ? '' : meta[slug]?.title,
-          description: postPage ? '' : meta[slug]?.description,
+          title: meta[slug]?.title,
+          description: meta[slug]?.description,
           image: config.ogImage,
           siteName: config.siteName,
         }}
