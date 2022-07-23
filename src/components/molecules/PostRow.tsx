@@ -12,7 +12,7 @@ type PropsType = {
 
 export const PostRow = ({ post, currentId }: PropsType) => {
   const { category, title, date, body, hideList, coverImage } = post
-  const dateString = DateTime.fromISO(date).setZone('Asia/Tokyo').toLocaleString()
+  const dateString = date
   const isCurrent = currentId === post.slug
   const ref = useRef<HTMLAnchorElement>(null)
 
