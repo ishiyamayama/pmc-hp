@@ -104,7 +104,7 @@ export const Header = () => {
                 className='w-[7.5rem] h-[3rem] rounded-full
             border border-current font-inter text-[1rem]
             md:absolute md:right-0 md:top-[14.8rem] md:w-[7.2rem]
-            hover:text-theme-bg hover:bg-theme-text'
+            hover:text-background hover:bg-text'
                 onClick={() => setGuiStyle(defaultStyles)}
               >
                 Default
