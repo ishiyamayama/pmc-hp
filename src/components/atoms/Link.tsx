@@ -2,20 +2,24 @@ import NextLink from 'next/link'
 
 type Props = {
   href?: string
+  scroll?: boolean
   className?: string
   children: React.ReactNode
   target?: string
   style?: React.CSSProperties
+  ref?: React.Ref<HTMLAnchorElement>
 }
 
-const Link = ({ href, className, children, target = '_self', style }: Props) => {
+const Link = ({ href, scroll = false, className, children, target = '_self', style, ref }: Props) => {
   return href ? (
-    <NextLink href={href} scroll={false}>
+    <NextLink href={href} scroll={scroll} passHref>
       <a
         className={'block ' + className}
         target={target}
         rel={target === '_blank' ? 'noreferrer' : undefined}
-        style={style}>
+        style={style}
+        ref={ref}
+      >
         {children}
       </a>
     </NextLink>

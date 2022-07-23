@@ -39,7 +39,7 @@ const Detail = ({ categories, posts, currentId, bio, dataTable, photos, links }:
         description={description}
         twitter={{ card: 'summary_large_image' }}
         og={{
-          title: currentPost?.title,
+          title: currentPost?.title + ' | ' + config.siteName,
           description: description,
           image: currentPost?.coverImage?.src || config.ogImage,
         }}

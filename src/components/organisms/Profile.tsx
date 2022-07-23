@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { Divider } from 'components/atoms'
+import { Divider, Link } from 'components/atoms'
 import { guiStyleState } from 'stores/guiStyle'
 import { LinksContentType, BiographyContentType, DataTableContentType, PhotosContentType } from 'types'
 
@@ -17,9 +17,9 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
   const listItemClass = 'min-w-[37%] pr-2'
   const LinkItem = ({ link }: { link: LinksContentType }) => (
     <li className={`${listItemClass} md:min-w-[44%]`}>
-      <a href={link.url} target='_blank' rel='noreferrer' className='underline text-text'>
+      <Link href={link.url} target='_blank' className='underline text-text'>
         {link.name}
-      </a>
+      </Link>
     </li>
   )
 
@@ -53,9 +53,9 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
                 <p className={listItemClass}>
                   <span>{data.title}</span>
                 </p>
-                <p className={listItemClass}>
+                <Link href={data.link} target='_blank' className={`${listItemClass} ${data.link ? 'underline':''}`}>
                   <span>{data.body}</span>
-                </p>
+                </Link>
               </li>
               <Divider />
             </Fragment>

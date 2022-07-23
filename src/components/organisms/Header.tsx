@@ -1,5 +1,6 @@
 import { getEventListeners } from 'events'
 import { Editor, styled, Inputs, FontFamilyInput } from '@compai/css-gui'
+import { useRouter } from 'next/router'
 import { useEffect, useState, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { Link, Divider } from 'components/atoms'
@@ -11,6 +12,7 @@ import { guiStyleState } from 'stores/guiStyle'
 import style from 'styles/modules/editor.module.sass'
 
 export const Header = () => {
+  const router = useRouter()
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
   const ref = useRef<HTMLDivElement>(null)
   const inputsRef = useRef<HTMLDivElement>(null)
@@ -66,14 +68,22 @@ export const Header = () => {
         >
           <div ref={ref} className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex text-text font-inter relative`}>
             <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
-              <h1 className='mdMin:py-1'>
-                <Link href='/' className='w-full max-w-[28.5rem] md:w-[26.2rem]'>
-                  <Logo />
-                </Link>
-              </h1>
+              {router.asPath === '/' ? (
+                <h1>
+                  <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+                    <Logo />
+                  </Link>
+                </h1>
+              ) : (
+                <div>
+                  <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+                    <Logo />
+                  </Link>
+                </div>
+              )}
               <Divider className='absolute bottom-0 w-full mdMin:hidden' />
             </div>
-            <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9.6rem]'>
+            <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9.6rem] md:mt-4'>
               <div className={style.editor}>
                 <div className={style.fontFamily}>
                   <Inputs.FontFamily />
@@ -103,7 +113,7 @@ export const Header = () => {
               <button
                 className='w-[7.5rem] h-[3rem] rounded-full
             border border-current font-inter text-[1rem]
-            md:absolute md:right-0 md:top-[14.8rem] md:w-[7.2rem]
+            md:absolute md:right-0 md:top-[15.8rem] md:w-[7.2rem]
             focus-visible:text-background focus-visible:bg-text
             hover:text-background hover:bg-text'
                 onClick={() => setGuiStyle(defaultStyles)}
