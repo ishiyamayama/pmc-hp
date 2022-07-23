@@ -25,11 +25,11 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
 
   return (
     <div className='mt-[6rem] md:mt-11 mdMin:grid-head items-start'>
-      <div className='aspect-[305/228] relative mt-2 bg-lime-600 md:w-[60%] md:max-w-[320px]'>
+      <div className='aspect-[305/228] relative mt-2 md:w-[60%] md:max-w-[320px]'>
         {photos.map((photo, index) => (
           <img
             className={`absolute top-0 left-0 object-cover w-full h-full cursor-pointer
-            ${index === currentPhoto ? 'opacity-0' : 'opacity-0'}`}
+            ${index === currentPhoto ? 'opacity-100' : 'opacity-0'}`}
             src={photo.image.src}
             alt={photo.title}
             key={photo.image._id}

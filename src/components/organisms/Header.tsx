@@ -1,5 +1,6 @@
+import { getEventListeners } from 'events'
 import { Editor, styled, Inputs, FontFamilyInput } from '@compai/css-gui'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { Link, Divider } from 'components/atoms'
 import { FontFamily } from 'components/inputs'
@@ -11,6 +12,28 @@ import style from 'styles/modules/editor.module.sass'
 
 export const Header = () => {
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      const inputs: NodeListOf<HTMLInputElement> = ref.current?.querySelectorAll('input')
+      inputs.forEach((input) => {
+        input.addEventListener('pointerdown', (e) => {
+          e.stopPropagation()
+        })
+      })
+      return () => {
+        if (ref.current) {
+          const inputs: NodeListOf<HTMLInputElement> = ref.current?.querySelectorAll('input')
+          inputs.forEach((input) => {
+            input.removeEventListener('pointerdown', (e) => {
+              e.stopPropagation()
+            })
+          })
+        }
+      }
+    }
+  }, [ref])
 
   return (
     <>
@@ -26,7 +49,7 @@ export const Header = () => {
           hideResponsiveControls={true}
           showAddProperties={false}
         >
-          <div className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex text-text font-inter relative`}>
+          <div ref={ref} className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex text-text font-inter relative`}>
             <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
               <h1>
                 <Link href='/' className='mdMin:py-1 w-full max-w-[28.5rem] md:w-[26.2rem]'>

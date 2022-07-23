@@ -33,15 +33,7 @@ export const fetchCategory = async () => {
     modelUid: 'category',
     query: { depth: 1, limit: 1000, order: ['createdAt'] },
   })
-  items.sort((a, b) => {
-    if (a.order > b.order) {
-      return -1
-    }
-    if (a.order < b.order) {
-      return 1
-    }
-    return 0
-  }).reverse()
+  items.sort((a, b) => (a.order > b.order ? -1 : 1)).reverse()
   return { categories: items }
 }
 
@@ -81,6 +73,7 @@ export const fetchPhotos = async () => {
     modelUid: 'photo',
     query: { depth: 1, order: ['sortOrder'], limit: 1000 },
   })
+  items.sort((a, b) => (a.order > b.order ? -1 : 1)).reverse()
   return { photos: items }
 }
 
