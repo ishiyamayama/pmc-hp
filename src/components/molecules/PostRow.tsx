@@ -28,7 +28,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
       <NextLink href={isCurrent && !hideList ? '/' : `/${post.category.slug}/${post.slug}`} passHref scroll={false}>
         <a className='p-[.9rem_0] md:p-[1rem_0] grid-post' ref={ref}>
           <time>{dateString}</time>
-          <h2>1st{title}</h2>
+          <h2>{title}</h2>
           <span className='md:hidden'>{category.name}</span>
           <span className='md:hidden min-w-[1em] flex mt-[.2em]'>
             {coverImage && (

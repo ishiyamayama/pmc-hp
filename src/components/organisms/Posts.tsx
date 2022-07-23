@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { useEffect, useState, useRef, Fragment } from 'react'
 import { useRecoilState } from 'recoil'
 import { CategoryButton, Divider } from 'components/atoms'
@@ -13,10 +12,11 @@ type PostsProps = {
 }
 
 export const Posts = ({ currentId, categories, posts }: PostsProps) => {
-  const router = useRouter()
   const [currentCategory, setCurrentCategory] = useRecoilState(categoryState)
   const [viewPosts, setViewPosts] = useState<PostContentType[]>(posts)
-  const [exit, setExit] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
+  const inputsRef = useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (currentCategory !== '') {
@@ -52,32 +52,45 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
 
   return (
     <section className='mt-24'>
-      <div className='flex gap-x-[1rem] font-inter text-[.833em]'>
-        <CategoryButton
-          categoryName='All'
-          onClick={() => handleClickCategory('')}
-          current={currentCategory === ''}
-          order={0}
-          disabled={singleView}
-        />
-        {categories.map((category) => {
-          return useCategoryArray.includes(category.name) ? (
-            <CategoryButton
-              key={category._id}
-              categoryName={category.name}
-              onClick={() => handleClickCategory(category.name)}
-              current={currentCategory === category.name}
-              order={category.order}
-              disabled={singleView}
-            />
-          ) : null
-        })}
+      <div className='flex justify-between font-inter text-[.833em]'>
+        <div className='flex gap-x-[1rem]'>
+          <CategoryButton
+            categoryName='All'
+            onClick={() => handleClickCategory('')}
+            current={currentCategory === ''}
+            order={0}
+            disabled={singleView}
+          />
+          {categories.map((category) => {
+            return useCategoryArray.includes(category.name) ? (
+              <CategoryButton
+                key={category._id}
+                categoryName={category.name}
+                onClick={() => handleClickCategory(category.name)}
+                current={currentCategory === category.name}
+                order={category.order}
+                disabled={singleView}
+              />
+            ) : null
+          })}
+        </div>
+        <div>
+          <input
+            className='w-full px-2 border border-gray-300 border-solid rounded-lg bg-background'
+            type='text'
+            placeholder='Search'
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            ref={inputsRef}
+          />
+        </div>
       </div>
       <div className='mt-8'>
         <Divider />
         {viewPosts.map((post) => {
           if (singleView && post.slug !== currentId) return null
           if (!singleView && post.hideList) return null
+          if (searchValue !== '' && !post.title.toLowerCase().includes(searchValue.toLowerCase())) return null
           return (
             <Fragment key={post._id}>
               <PostRow post={post} currentId={currentId} />

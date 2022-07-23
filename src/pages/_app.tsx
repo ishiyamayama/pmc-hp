@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         title={postPage ? '' : meta[slug]?.title}
         description={postPage ? '' : meta[slug]?.description}
         canonical={canonicalUrl}
-        twitter={{ card: 'summary_large_image', site: '' }}
+        twitter={{ card: 'summary', site: '' }}
         og={{
           title: postPage ? '' : meta[slug]?.title,
           description: postPage ? '' : meta[slug]?.description,
@@ -32,6 +32,10 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           siteName: config.siteName,
         }}
         customMetaTags={[{ name: 'viewport', content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0' }]}
+        customLinkTags={[
+          { rel: 'icon', type: 'image/svg+xml', href: `/favicon.svg` },
+          { rel: 'icon', href: `/favicon.ico` },
+        ]}
       />
       <RecoilRoot>
         <AppLayout>
