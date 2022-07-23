@@ -13,7 +13,9 @@ type PostsProps = {
 
 export const Posts = ({ currentId, categories, posts }: PostsProps) => {
   const [currentCategory, setCurrentCategory] = useRecoilState(categoryState)
-  const [viewPosts, setViewPosts] = useState<PostContentType[]>(posts)
+  const [viewPosts, setViewPosts] = useState<PostContentType[]>(
+    currentCategory ? posts.filter((post) => post.category.name === currentCategory) : posts,
+  )
   const [searchValue, setSearchValue] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const currentPost = posts.find((post) => post.slug === currentId)
