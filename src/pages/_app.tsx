@@ -21,13 +21,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <NextHeadSeo
-        title={meta[slug]?.title}
-        description={meta[slug]?.description}
+        title={meta[slug]?.title || config.siteName}
+        description={meta[slug]?.description || ''}
         canonical={canonicalUrl}
-        twitter={{ card: 'summary' }}
+        twitter={{ card: 'summary_large_image' }}
         og={{
-          title: meta[slug]?.title,
-          description: meta[slug]?.description,
+          title: meta[slug]?.title || config.siteName,
+          description: meta[slug]?.description || '',
           image: config.ogImage,
           siteName: config.siteName,
         }}
