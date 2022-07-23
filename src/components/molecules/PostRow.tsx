@@ -29,25 +29,26 @@ export const PostRow = ({ post, currentId }: PropsType) => {
 
   return (
     <article id={`${post.slug}`}>
-      <Link
-        href={href}
-        className={`p-[.9rem_0] md:p-[1rem_0] grid-post hover:opacity-60 focus-visible:text-[blue] !outline-none`}
-        ref={ref}
-      >
-        <time>{dateString}</time>
-        {isCurrent ? <h1>{title}</h1> : <p>{title}</p>}
-        <span className='md:hidden'>{category.name}</span>
-        <span className='md:hidden min-w-[1em] flex mt-[.2em]'>
-          {coverImage && (
-            <img className='w-full max-w-[1.25em] block object-cover aspect-[1/1]' src={coverImage.src} alt='' />
-          )}
-        </span>
-        <span className='min-w-[1em] md:min-w-[1.5rem] flex mt-[.2em]'>
-          <span
-            className={`ml-auto w-full max-w-[1.25em] block object-cover aspect-[1/1] bg-${
-              categoryColors[category.name]
-            }`}
-          />
+      <Link href={href}>
+        <span
+          className={`p-[.9rem_0] md:p-[1rem_0] grid-post hover:opacity-60 focus-visible:text-[blue] !outline-none`}
+          ref={ref}
+        >
+          <time>{dateString}</time>
+          {isCurrent ? <h1>{title}</h1> : <p>{title}</p>}
+          <span className='md:hidden'>{category.name}</span>
+          <span className='md:hidden min-w-[1em] flex mt-[.2em]'>
+            {coverImage && (
+              <img className='w-full max-w-[1.25em] block object-cover aspect-[1/1]' src={coverImage.src} alt='' />
+            )}
+          </span>
+          <span className='min-w-[1em] md:min-w-[1.5rem] flex mt-[.2em]'>
+            <span
+              className={`ml-auto w-full max-w-[1.25em] block object-cover aspect-[1/1] bg-${
+                categoryColors[category.name]
+              }`}
+            />
+          </span>
         </span>
       </Link>
       {isCurrent && (

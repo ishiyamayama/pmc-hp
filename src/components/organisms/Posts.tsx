@@ -15,7 +15,7 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
   const [currentCategory, setCurrentCategory] = useRecoilState(categoryState)
   const [viewPosts, setViewPosts] = useState<PostContentType[]>(posts)
   const [searchValue, setSearchValue] = useState('')
-  const inputsRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const currentPost = posts.find((post) => post.slug === currentId)
   const singleView = currentPost?.hideList
 
@@ -32,8 +32,8 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
   const useCategoryArray = posts.map((post) => !post.hideList && post.category.name)
 
   return (
-    <section className='mt-24'>
-      <div className='flex justify-between font-inter text-[.833em]'>
+    <section className='min-h-screen mt-24'>
+      <div className='mdMin:flex justify-between font-inter text-[.833em]'>
         <div className='flex gap-x-[1rem]'>
           <CategoryButton
             categoryName='All'
@@ -55,14 +55,14 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
             ) : null
           })}
         </div>
-        <div>
+        <div className='w-[calc(21%+8rem)] md:hidden'>
           <input
-            className='w-full border border-gray-300 border-solid rounded-lg bg-background p-[.2rem_.6rem_.3rem_.6rem] leading-[1.2]'
+            className='w-full border border-current border-solid rounded-lg bg-background p-[.2rem_.6rem_.3rem_.6rem] leading-[1.2]'
             type='text'
             placeholder='Search'
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            ref={inputsRef}
+            ref={inputRef}
           />
         </div>
       </div>
