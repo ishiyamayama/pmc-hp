@@ -25,7 +25,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
 
   return (
     <article className={style.article} id={`${post.slug}`}>
-      <NextLink href={isCurrent && !hideList ? '/' : `/${post.category.slug}/${post.slug}`} passHref scroll={false}>
+      <NextLink href={isCurrent && !hideList ? '/' : `/${post.category.slug}/${post.slug}`} scroll={false}>
         <a className='p-[.9rem_0] md:p-[1rem_0] grid-post' ref={ref}>
           <time>{dateString}</time>
           <h2>1st{title}</h2>
@@ -44,7 +44,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
           </span>
         </a>
       </NextLink>
-      {/* {isCurrent && (
+      {isCurrent && (
         <div className='mt-[1rem] mdMin:grid-body pb-[5rem]'>
           <div className='md:hidden' />
           <div className='body' dangerouslySetInnerHTML={{ __html: body }} />
@@ -58,7 +58,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
             />
           )}
         </div>
-      )} */}
+      )}
     </article>
   )
 }
