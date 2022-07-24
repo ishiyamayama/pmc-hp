@@ -23,10 +23,7 @@ export const TextColor = () => {
   }, [])
 
   const handleClickPalette = (color: { r: number; g: number; b: number; a: number }) => {
-    setGuiStyle((prevState) => ({
-      ...prevState,
-      color: color,
-    }))
+    setGuiStyle((prevState) => ({ ...prevState, color: color }))
   }
 
   return (
