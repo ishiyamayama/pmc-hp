@@ -8,8 +8,8 @@ type PropsType = {
 
 export const CategoryButton = ({ categoryName, onClick, current, order, disabled }: PropsType) => (
   <button
-    className={`relative p-[.2rem_.6rem_.3rem_.6rem] md:p-[.3rem_.6rem_.3rem_.6rem] leading-[1.2] border border-current mdMin:hover:opacity-60 focus-visible:text-[blue] rounded-lg group
-    ${current ? 'border-bg bg-text text-background' : ''} ${disabled ? 'opacity-60 !bg-[#E6E6E6]' : ''}`}
+    className={`relative p-[2px_6px_3px_6px] md:p-[3px_6px_3px_6px] leading-[1.2] border border-current mdMin:hover:opacity-60 focus-visible:text-[blue] rounded-lg group
+    ${current ? 'border-bg bg-text text-background !opacity-100' : ''} ${disabled ? 'opacity-60 !bg-[#E6E6E6]' : ''}`}
     onClick={onClick}
     disabled={disabled}
   >
