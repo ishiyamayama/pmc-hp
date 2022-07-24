@@ -29,7 +29,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
 
   return (
     <article id={`${post.slug}`}>
-      <Link href={href} className="hover:opacity-60 focus-visible:text-[blue] !outline-offset-0">
+      <Link href={href} className="mdMin:hover:opacity-60 focus-visible:text-[blue] !outline-offset-0">
         <span
           className={`p-[.9rem_0] md:p-[1rem_0] grid-post`}
           ref={ref}

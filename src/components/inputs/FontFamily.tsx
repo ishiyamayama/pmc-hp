@@ -25,15 +25,18 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
   }, [guiStyle.fontFamily])
 
   useEffect(() => {
-    if (inputValue !== guiStyle.fontFamily && inputValue !== '') {
-      setViewFonts(fonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())))
-      setViewPrimaryFonts(primaryFonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())))
-    } else {
-      setViewFonts(fonts)
-      setViewPrimaryFonts(primaryFonts)
-    }
+    const timeId = setTimeout(() => {
+      if (inputValue !== guiStyle.fontFamily && inputValue !== '') {
+        setViewFonts(fonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())))
+        setViewPrimaryFonts(primaryFonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())))
+      } else {
+        setViewFonts(fonts)
+        setViewPrimaryFonts(primaryFonts)
+      }
+    }, 300)
+    return () => clearTimeout(timeId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, guiStyle.fontFamily])
+  }, [inputValue])
 
   useEffect(() => {
     if (inputRef.current && ulRef.current) {
@@ -81,7 +84,7 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
         >
           {viewPrimaryFonts.map((font) => (
             <li key={font}>
-              <button className={style.fontButton} onClick={() => handleClickButton(font)}>
+              <button className={`${style.fontButton} ${guiStyle.fontFamily === font && 'text-background bg-text'}`} onClick={() => handleClickButton(font)}>
                 {font}
               </button>
             </li>
@@ -89,7 +92,7 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
           {viewPrimaryFonts.length ? <Divider /> : null}
           {viewFonts.map((font) => (
             <li key={font} className={`w-full`}>
-              <button className={style.fontButton} onClick={() => handleClickButton(font)}>
+              <button className={`${style.fontButton} ${guiStyle.fontFamily === font && 'text-background bg-text'}`} onClick={() => handleClickButton(font)}>
                 {font}
               </button>
             </li>

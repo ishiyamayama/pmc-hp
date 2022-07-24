@@ -48,6 +48,23 @@
     margin-bottom: .4rem
     color: var(--color-text) !important
 
+  .colorButton
+    width: 2.4rem
+    height: 2.4rem
+    border-radius: 3px
+    border: solid 1px var(--color-text)
+
+  .colorModal
+    position: absolute
+    z-index: 10
+    left: 1.2rem
+    top: calc(100% + .4rem)
+    transform: translateX(-50%)
+    padding: 1rem 1rem .7rem
+    border-radius: 6px
+    background: white
+    border: solid 1px var(--color-text)
+
   .unitModal
     position: absolute
     right: 0
@@ -78,10 +95,10 @@
       width: 3.8rem
 
     .unitButton
-      @apply text-left px-[calc(1px+.4rem)] hover:bg-text hover:text-background py-[.5rem] w-full
+      @apply text-left px-[calc(1px+.4rem)] mdMin:hover:bg-text mdMin:hover:text-background py-[.5rem] w-full
 
     .unitButtonActive
       @apply bg-text text-background
 
   .fontButton
-    @apply text-left px-[.4rem] hover:bg-text hover:text-background py-[.5rem] w-full
+    @apply text-left px-[.4rem] mdMin:hover:bg-text mdMin:hover:text-background py-[.5rem] w-full

@@ -11,11 +11,17 @@ const AppLayout = ({ children }: Props) => {
     fontSize: `${guiStyle.fontSize.value}${guiStyle.fontSize.unit}`,
     letterSpacing: `${guiStyle.letterSpacing.value}${guiStyle.letterSpacing.unit}`,
     lineHeight: `${guiStyle.lineHeight.value}${guiStyle.lineHeight.unit}`,
-    color: guiStyle.color,
+    color: `rgba(${guiStyle.color.r},${guiStyle.color.g},${guiStyle.color.b},${guiStyle.color.a})`,
   }
   useEffect(() => {
-    document.documentElement.style.setProperty('--color-text', guiStyle.color)
-    document.documentElement.style.setProperty('--color-background', guiStyle.backgroundColor)
+    document.documentElement.style.setProperty(
+      '--color-text',
+      `rgba(${guiStyle.color.r},${guiStyle.color.g},${guiStyle.color.b},${guiStyle.color.a})`,
+    )
+    document.documentElement.style.setProperty(
+      '--color-background',
+      `rgba(${guiStyle.backgroundColor.r},${guiStyle.backgroundColor.g},${guiStyle.backgroundColor.b},${guiStyle.backgroundColor.a})`,
+    )
   }, [guiStyle])
   return (
     <div className='min-h-full p-[5rem_5rem_5rem] lg:mdMin:p-[4rem_2.5rem_5rem] md:p-[0rem_1.5rem_2rem]'>

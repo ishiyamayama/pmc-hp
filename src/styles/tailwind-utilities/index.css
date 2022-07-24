@@ -1,7 +1,7 @@
 @tailwind utilities;
 @layer utilities {
   .grid-head {
-    @apply grid w-full grid-cols-[22.7%_48.5%_22.7%] justify-between;
+    @apply grid w-full grid-cols-[22.7%_48.5%_23%] justify-between;
   }
   .grid-post {
     @apply grid gap-x-[4rem] md:gap-x-[2rem] w-full grid-cols-[14%_1fr_10%_5.5%_5.5%] md:grid-cols-[21.2%_1fr_1.5rem] justify-between items-start;

@@ -35,8 +35,8 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
 
   return (
     <section className='min-h-screen mt-24'>
-      <div className='mdMin:flex justify-between font-inter text-[.833em]'>
-        <div className='flex gap-x-[1rem]'>
+      <div className='flex flex-wrap justify-between font-inter text-[.833em] gap-x-[1rem]'>
+        <div className='flex gap-x-[1rem] md:mb-4'>
           <CategoryButton
             categoryName='All'
             onClick={() => handleClickCategory('')}
@@ -57,9 +57,9 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
             ) : null
           })}
         </div>
-        <div>
+        <div className='max-w-[50%] w-[16rem] md:mb-4'>
           <input
-            className='w-full px-2 border rounded-lg border-text bg-background'
+            className='w-full border border-current border-solid rounded-lg bg-background p-[.2rem_.6rem_.3rem_.6rem] md:p-[.3rem_.6rem_.3rem_.6rem] leading-[1.2] placeholder:text-current placeholder:opacity-100 focus-visible:placeholder:text-blue focus-visible:placeholder:opaity-100'
             type='text'
             placeholder='Search'
             value={searchValue}
@@ -68,7 +68,7 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
           />
         </div>
       </div>
-      <div className='mt-8'>
+      <div className='mt-8 md:mt-0'>
         <Divider />
         {viewPosts.map((post) => {
           if (singleView && post.slug !== currentId) return null

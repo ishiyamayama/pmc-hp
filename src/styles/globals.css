@@ -45,6 +45,12 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+input:focus {
+  border-color: blue;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 input:focus-visible {
   border-color: blue;
   outline: none !important;
