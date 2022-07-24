@@ -1,3 +1,21 @@
+export type StyleProps = {
+  fontFamily: string
+  fontSize: {
+    value: number | string
+    unit: string
+  }
+  lineHeight: {
+    value: number | string
+    unit: string
+  }
+  letterSpacing: {
+    value: number | string
+    unit: string
+  }
+  color: string
+  backgroundColor: string
+}
+
 export const defaultStyles = {
   fontFamily: 'Noto Serif JP',
   fontSize: { value: 12, unit: 'px' },

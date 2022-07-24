@@ -57,9 +57,9 @@ export const Posts = ({ currentId, categories, posts }: PostsProps) => {
             ) : null
           })}
         </div>
-        <div className='w-[calc(21%+8rem)] md:hidden relative'>
+        <div>
           <input
-            className='w-full border border-current border-solid rounded-lg bg-background p-[.2rem_.6rem_.3rem_.6rem] leading-[1.2] placeholder:text-current placeholder:opacity-100 focus-visible:placeholder:text-blue focus-visible:placeholder:opaity-100'
+            className='w-full px-2 border rounded-lg border-text bg-background'
             type='text'
             placeholder='Search'
             value={searchValue}

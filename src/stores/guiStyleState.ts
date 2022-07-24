@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
-import { defaultStyles } from 'const'
+import { defaultStyles, StyleProps } from 'const'
 
-const guiStyleState = atom<any>({
+const guiStyleState = atom<StyleProps>({
   key: 'guiStyle',
   default: defaultStyles,
 })

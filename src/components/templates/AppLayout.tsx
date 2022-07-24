@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import { ColorScheme, Header } from 'components/organisms'
-import { guiStyleState } from 'stores/guiStyle'
+import { guiStyleState } from 'stores/guiStyleState'
 type Props = { children?: React.ReactNode }
 
 const AppLayout = ({ children }: Props) => {
@@ -20,7 +20,6 @@ const AppLayout = ({ children }: Props) => {
   return (
     <div className='min-h-full p-[5rem_5rem_5rem] lg:mdMin:p-[4rem_2.5rem_5rem] md:p-[0rem_1.5rem_2rem]'>
       <ColorScheme />
-      <Header />
       <main style={innerStyle}>
         {children}
         <small translate='no' className='mt-[10rem] block'>

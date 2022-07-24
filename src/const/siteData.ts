@@ -7,7 +7,7 @@ export const config = {
 export const meta: StringKeyObject = {
   top: {
     title: config.siteName,
-    description: 'ここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキストどうしますかここのテキスト',
+    description: '',
   },
   "HATIHATI-PRO": {
     title: 'HATIHATI-PRO. | ' + config.siteName,

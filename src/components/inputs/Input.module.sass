@@ -1,0 +1,71 @@
+.container
+  display: block
+  @media screen and (max-width: 800px)
+    width: calc(50% - .8rem)
+
+  .inner
+    display: flex
+    column-gap: .5rem
+    align-items: stretch
+    position: relative
+
+  .input
+    flex: 1 1 0%
+    width: 7ch
+    min-width: 2ch
+
+  .unit
+    padding-left: .4rem
+    width: 4rem
+    min-width: 4rem
+    @media screen and (max-width: 800px)
+      min-width: 3.6rem
+      width: 3.6rem
+
+  .input,.unit
+    margin: 0
+    color: var(--color-text)
+    font-family: var(--font-inter) !important
+    line-height: 1
+    height: 2rem
+    display: flex
+    align-items: center
+    font-size: 1rem
+    text-align: left
+    border: solid 1px var(--color-text)
+    border-radius: 2px
+    background: none
+    padding: 0 .4rem
+    outline: none !important
+    &:focus-visible
+      border-color: blue
+      box-shadow: none
+
+  .label
+    display: block
+    font-size: 1rem
+    line-height: 1
+    margin-bottom: .4rem
+    color: var(--color-text) !important
+
+  .unitModal
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 20
+    padding-bottom: 0rem
+    border: solid 1px var(--color-text)
+    border-radius: 2px
+    background: var(--color-background)
+    width: 4rem
+    min-width: 4rem
+    border-radius: 3px
+    @media screen and (max-width: 800px)
+      min-width: 3.8rem
+      width: 3.8rem
+
+    .unitButton
+      @apply text-left px-[.4rem] hover:bg-text hover:text-background py-[.5rem] w-full
+
+  .fontButton
+    @apply text-left px-[.4rem] hover:bg-text hover:text-background py-[.5rem] w-full
