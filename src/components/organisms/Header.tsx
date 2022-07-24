@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { Link, Divider } from 'components/atoms'
-import { FontFamily, FontSize } from 'components/inputs'
+import { FontFamily, FontSize, LineHeight, LetterSpacing } from 'components/inputs'
 import { Logo } from 'components/svg'
 import { defaultStyles } from 'const'
 import { defaultTheme } from 'const/defaultTheme'
@@ -73,7 +73,10 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
           hideResponsiveControls={true}
           showAddProperties={false}
         >
-          <div ref={ref} className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex font-inter font-medium text-[1rem] relative`}>
+          <div
+            ref={ref}
+            className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex font-inter font-medium text-[1rem] relative`}
+          >
             <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
               {router.asPath === '/' ? (
                 <h1>
@@ -91,17 +94,13 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
               <Divider className='absolute bottom-0 w-full mdMin:hidden' />
             </div>
             <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] md:mt-4'>
-              <div className="w-full grid gap-y-[.6rem] md:flex md:justify-between">
+              <div className='w-full grid gap-y-[.6rem] md:flex md:justify-between'>
                 <FontFamily fonts={fonts} />
                 <FontSize />
               </div>
-              <div className={style.editor}>
-                <div className={style.lineHeight}>
-                  <Inputs.LineHeight />
-                </div>
-                <div className={style.letterSpacing}>
-                  <Inputs.LetterSpacing />
-                </div>
+              <div className='w-full grid gap-y-[.6rem] md:flex md:justify-between'>
+                <LineHeight />
+                <LetterSpacing />
               </div>
             </div>
             <div className='flex justify-between md:pr-[9.6rem]'>

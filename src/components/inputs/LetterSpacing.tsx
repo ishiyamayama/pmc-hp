@@ -4,10 +4,10 @@ import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
 import { guiStyleState } from 'stores/guiStyleState'
 
-export const FontSize = () => {
+export const LetterSpacing = () => {
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
   const [isOpen, setIsOpen] = useState(false)
-  const [unitIndex, setUnitIndex] = useState(unitList.indexOf(guiStyle.fontSize.unit))
+  const [unitIndex, setUnitIndex] = useState(unitList.indexOf(guiStyle.letterSpacing.unit))
   const [offsetTop, setOffsetTop] = useState<number | null>(null)
   const id = useId()
   const ulRef = useRef<HTMLUListElement>(null)
@@ -15,9 +15,9 @@ export const FontSize = () => {
   const handleChangeInput = (e: any) => {
     setGuiStyle((prevState) => ({
       ...prevState,
-      fontSize: {
+      letterSpacing: {
         value: Number(e.target.value),
-        unit: prevState.fontSize.unit,
+        unit: prevState.letterSpacing.unit,
       },
     }))
   }
@@ -27,8 +27,8 @@ export const FontSize = () => {
     setUnitIndex(unitList.indexOf(unit))
     setGuiStyle((prevState) => ({
       ...prevState,
-      fontSize: {
-        value: prevState.fontSize.value,
+      letterSpacing: {
+        value: prevState.letterSpacing.value,
         unit: unit,
       },
     }))
@@ -46,15 +46,15 @@ export const FontSize = () => {
   return (
     <div className={style.container}>
       <label htmlFor={id} className={style.label}>
-        Font Size
+        Letter Spacing
       </label>
       <div className={style.inner}>
         <input
           className={style.input}
           type='number'
-          min={1}
+          step="0.1"
           id={id}
-          value={guiStyle.fontSize.value}
+          value={guiStyle.letterSpacing.value}
           onChange={handleChangeInput}
         />
         <button
@@ -64,36 +64,29 @@ export const FontSize = () => {
             setIsOpen(true)
           }}
         >
-          {guiStyle.fontSize.unit}
+          {guiStyle.letterSpacing.unit}
         </button>
         <div
-          className={`${style.unitModal} ${isOpen ? 'block' : 'hidden'}`}
-          style={{
-            transform: `translateY(-${unitIndex * 100}%)`,
-          }}
+          className={`${style.unitModal} ${isOpen ? 'delay-75' : 'opacity-0 pointer-events-none'}`}
+          style={{ transform: `translateY(-${unitIndex * 100}%)` }}
         >
-          <div
-            className={`${style.unitModal} ${isOpen ? 'delay-75' : 'opacity-0 pointer-events-none'}`}
-            style={{ transform: `translateY(-${unitIndex * 100}%)` }}
+          <ul
+            className={style.unitModalInner}
+            ref={ulRef}
+            style={{ transform: offsetTop ? `translateY(${offsetTop < 0 ? -offsetTop + 15 : 0}px)` : 'none' }}
           >
-            <ul
-              className={style.unitModalInner}
-              ref={ulRef}
-              style={{ transform: offsetTop ? `translateY(${offsetTop < 0 ? -offsetTop + 15 : 0}px)` : 'none' }}
-            >
-              {unitList.map((unit) => (
-                <li key={unit}>
-                  <button
-                    className={`${style.unitButton}
-                ${unit === guiStyle.fontSize.unit ? style.unitButtonActive : ''}`}
-                    onClick={() => handleClickUnit(unit)}
-                  >
-                    {unit}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {unitList.map((unit) => (
+              <li key={unit}>
+                <button
+                  className={`${style.unitButton}
+                ${unit === guiStyle.letterSpacing.unit ? style.unitButtonActive : ''}`}
+                  onClick={() => handleClickUnit(unit)}
+                >
+                  {unit}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

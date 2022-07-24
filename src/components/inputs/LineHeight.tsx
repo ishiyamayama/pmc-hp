@@ -1,47 +1,63 @@
 import { useEffect, useState, useId, useRef } from 'react'
 const unitList = ['px', 'rem', 'em', 'vh', 'vw', 'vmin', 'vmax', '%']
+import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
+import { guiStyleState } from 'stores/guiStyleState'
 
-export const FontSize = () => {
-  const [currentSize, setCurrentSize] = useState('12px')
-  const [currentUnit, setCurrentUnit] = useState('px')
-  const [inputValue, setInputValue] = useState(12)
+export const LineHeight = () => {
+  const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
   const [isOpen, setIsOpen] = useState(false)
+  const [unitIndex, setUnitIndex] = useState(unitList.indexOf(guiStyle.lineHeight.unit))
+  const [offsetTop, setOffsetTop] = useState<number | null>(null)
   const id = useId()
   const ulRef = useRef<HTMLUListElement>(null)
 
-  const handleChange = (e: any) => {
-    setInputValue(e.target.value)
-    setCurrentSize(`${e.target.value}${currentUnit}`)
+  const handleChangeInput = (e: any) => {
+    setGuiStyle((prevState) => ({
+      ...prevState,
+      lineHeight: {
+        value: Number(e.target.value),
+        unit: prevState.lineHeight.unit,
+      },
+    }))
   }
 
   const handleClickUnit = (unit: string) => {
     setIsOpen(false)
-    setCurrentUnit(unit)
-    setCurrentSize(`${inputValue}${unit}`)
+    setUnitIndex(unitList.indexOf(unit))
+    setGuiStyle((prevState) => ({
+      ...prevState,
+      lineHeight: {
+        value: prevState.lineHeight.value,
+        unit: unit,
+      },
+    }))
   }
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--textsize-variant', currentSize)
-  }, [currentSize])
+    ulRef.current && !isOpen && setOffsetTop(null)
+    ulRef.current && isOpen && setOffsetTop(ulRef.current.getBoundingClientRect().top)
+  }, [unitIndex, isOpen])
 
   useEffect(() => {
-    if (ulRef.current) {
-      document.addEventListener('click', (e: Event) => {
-        if (ulRef.current && !ulRef.current.contains(e.target as Node)) {
-          isOpen && setIsOpen(false)
-        }
-      })
-    }
+    ulRef.current && document.addEventListener('click', () => setIsOpen(false))
   }, [ulRef])
 
   return (
     <div className={style.container}>
       <label htmlFor={id} className={style.label}>
-        Font Size
+        Line Height
       </label>
       <div className={style.inner}>
-        <input className={style.input} type='number' min={1} id={id} value={inputValue} onChange={handleChange} />
+        <input
+          className={style.input}
+          type='number'
+          min={0}
+          step={10}
+          id={id}
+          value={guiStyle.lineHeight.value}
+          onChange={handleChangeInput}
+        />
         <button
           className={style.unit}
           onClick={(e) => {
@@ -49,17 +65,30 @@ export const FontSize = () => {
             setIsOpen(true)
           }}
         >
-          {currentUnit}
+          {guiStyle.lineHeight.unit}
         </button>
-        <ul className={`${style.unitModal} ${isOpen ? 'block' : 'hidden'}`} ref={ulRef}>
-          {unitList.map((unit) => (
-            <li key={unit}>
-              <button className={style.unitButton} onClick={() => handleClickUnit(unit)}>
-                {unit}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div
+          className={`${style.unitModal} ${isOpen ? 'delay-75' : 'opacity-0 pointer-events-none'}`}
+          style={{ transform: `translateY(-${unitIndex * 100}%)` }}
+        >
+          <ul
+            className={style.unitModalInner}
+            ref={ulRef}
+            style={{ transform: offsetTop ? `translateY(${offsetTop < 0 ? -offsetTop + 15 : 0}px)` : 'none' }}
+          >
+            {unitList.map((unit) => (
+              <li key={unit}>
+                <button
+                  className={`${style.unitButton}
+                ${unit === guiStyle.lineHeight.unit ? style.unitButtonActive : ''}`}
+                  onClick={() => handleClickUnit(unit)}
+                >
+                  {unit}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   )
