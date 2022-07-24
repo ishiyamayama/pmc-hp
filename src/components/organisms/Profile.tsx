@@ -1,7 +1,5 @@
 import { Fragment, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { Divider, Link } from 'components/atoms'
-import { guiStyleState } from 'stores/guiStyle'
 import { LinksContentType, BiographyContentType, DataTableContentType, PhotosContentType } from 'types'
 
 type Props = {
@@ -12,7 +10,6 @@ type Props = {
 }
 
 export const Profile = ({ bio, dataTable, photos, links }: Props) => {
-  const guiStyle = useRecoilValue(guiStyleState)
   const [currentPhoto, setCurrentPhoto] = useState(0)
   const listItemClass = 'min-w-[37%] pr-2'
   const LinkItem = ({ link }: { link: LinksContentType }) => (
@@ -53,7 +50,7 @@ export const Profile = ({ bio, dataTable, photos, links }: Props) => {
                 <p className={listItemClass}>
                   <span>{data.title}</span>
                 </p>
-                <Link href={data.link} target='_blank' className={`${listItemClass} ${data.link ? 'underline':''}`}>
+                <Link href={data.link} target='_blank' className={`${listItemClass} ${data.link ? 'underline' : ''}`}>
                   <span>{data.body}</span>
                 </Link>
               </li>

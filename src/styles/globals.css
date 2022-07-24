@@ -40,9 +40,14 @@ body,
 
 a:focus-visible {
   border: none;
-  outline: 2px solid var(--color-blue);
+  outline: 1px solid blue;
+  box-shadow: none !important;
   outline-offset: 3px;
-  outline-style: outset;
+}
+
+input:focus {
+  border-color: blue;
+  outline: none !important;
   box-shadow: none !important;
 }
 
@@ -52,7 +57,7 @@ input:focus-visible {
   box-shadow: none !important;
 }
 
-button{
+button {
   outline: none !important;
   box-shadow: none !important;
 }

@@ -1,0 +1,104 @@
+.container
+  display: block
+  @media screen and (max-width: 800px)
+    width: calc(50% - .8rem)
+
+  .inner
+    display: flex
+    column-gap: .5rem
+    align-items: stretch
+    position: relative
+
+  .input
+    flex: 1 1 0%
+    width: 7ch
+    min-width: 2ch
+
+  .unit
+    padding-left: .4rem
+    width: 4rem
+    font-weight: 400
+    font-size: 1rem
+    @media screen and (max-width: 800px)
+      width: 3.6rem
+
+  .input,.unit
+    margin: 0
+    color: var(--color-text)
+    font-family: var(--font-inter) !important
+    line-height: 1
+    height: 2rem
+    display: flex
+    align-items: center
+    font-size: 1rem
+    text-align: left
+    border: solid 1px var(--color-text)
+    border-radius: 2px
+    background: none
+    padding: 0 .4rem
+    outline: none !important
+    &:focus-visible
+      border-color: blue
+      box-shadow: none
+
+  .label
+    display: block
+    font-size: 1rem
+    line-height: 1
+    margin-bottom: .4rem
+    color: var(--color-text) !important
+
+  .colorButton
+    width: 2.4rem
+    height: 2.4rem
+    border-radius: 3px
+    border: solid 1px var(--color-text)
+
+  .colorModal
+    position: absolute
+    z-index: 10
+    left: 1.2rem
+    top: calc(100% + .4rem)
+    transform: translateX(-50%)
+    padding: 1rem 1rem .7rem
+    border-radius: 6px
+    background: white
+    border: solid 1px var(--color-text)
+
+  .unitModal
+    position: absolute
+    right: 0
+    z-index: 20
+    height: 100%
+    width: 4rem
+    min-width: 4rem
+
+    @media screen and (max-width: 800px)
+      min-width: 3.8rem
+      width: 3.8rem
+
+  .unitModalInner
+    position: relative
+    top: -1px
+    height: 16.2rem
+    border: solid 1px var(--color-text)
+    border-radius: 2px
+    background: var(--color-background)
+    width: 4rem
+    min-width: 4rem
+    border-radius: 3px
+    overflow: hidden
+    font-size: 1rem
+    font-weight: 400
+    @media screen and (max-width: 800px)
+      min-width: 3.8rem
+      width: 3.8rem
+
+    .unitButton
+      @apply text-left px-[calc(1px+.4rem)] mdMin:hover:bg-text mdMin:hover:text-background py-[.5rem] w-full
+
+    .unitButtonActive
+      @apply bg-text text-background
+
+  .fontButton
+    @apply text-left px-[.4rem] mdMin:hover:bg-text mdMin:hover:text-background py-[.5rem] w-full
