@@ -51,7 +51,14 @@
     top: 0
     right: 0
     z-index: 20
-    padding-bottom: 0rem
+    height: 100%
+    width: 4rem
+    min-width: 4rem
+    @media screen and (max-width: 800px)
+      min-width: 3.8rem
+      width: 3.8rem
+
+  .unitModalInner
     border: solid 1px var(--color-text)
     border-radius: 2px
     background: var(--color-background)
@@ -64,6 +71,9 @@
 
     .unitButton
       @apply text-left px-[.4rem] hover:bg-text hover:text-background py-[.5rem] w-full
+
+    .unitButtonActive
+      @apply bg-text text-background
 
   .fontButton
     @apply text-left px-[.4rem] hover:bg-text hover:text-background py-[.5rem] w-full
