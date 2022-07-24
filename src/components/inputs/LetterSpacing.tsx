@@ -81,8 +81,9 @@ export const LetterSpacing = () => {
               <li key={unit}>
                 <button
                   className={`${style.unitButton}
-                ${unit === guiStyle.letterSpacing.unit ? style.unitButtonActive : ''}`}
+                  ${unit === guiStyle.letterSpacing.unit ? style.unitButtonActive : ''}`}
                   onClick={() => handleClickUnit(unit)}
+                  tabIndex={-1}
                 >
                   {unit}
                 </button>

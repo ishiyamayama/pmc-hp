@@ -67,7 +67,7 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
           ref={inputRef}
           value={inputValue}
           onChange={handleChange}
-          onFocus={(e) => {
+          onClick={(e) => {
             if (isOpen) e.preventDefault()
             setIsOpen(true)
           }}
@@ -92,7 +92,7 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
           {viewPrimaryFonts.length ? <Divider /> : null}
           {viewFonts.map((font) => (
             <li key={font} className={`w-full`}>
-              <button className={`${style.fontButton} ${guiStyle.fontFamily === font && 'text-background bg-text'}`} onClick={() => handleClickButton(font)}>
+              <button className={`${style.fontButton} ${guiStyle.fontFamily === font && 'text-background bg-text'}`} onClick={() => handleClickButton(font)} tabIndex={-1}>
                 {font}
               </button>
             </li>

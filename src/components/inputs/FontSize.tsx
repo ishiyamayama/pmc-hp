@@ -86,8 +86,9 @@ export const FontSize = () => {
                 <li key={unit}>
                   <button
                     className={`${style.unitButton}
-                ${unit === guiStyle.fontSize.unit ? style.unitButtonActive : ''}`}
+                    ${unit === guiStyle.fontSize.unit ? style.unitButtonActive : ''}`}
                     onClick={() => handleClickUnit(unit)}
+                    tabIndex={-1}
                   >
                     {unit}
                   </button>

@@ -80,8 +80,9 @@ export const LineHeight = () => {
               <li key={unit}>
                 <button
                   className={`${style.unitButton}
-                ${unit === guiStyle.lineHeight.unit ? style.unitButtonActive : ''}`}
+                  ${unit === guiStyle.lineHeight.unit ? style.unitButtonActive : ''}`}
                   onClick={() => handleClickUnit(unit)}
+                  tabIndex={-1}
                 >
                   {unit}
                 </button>
