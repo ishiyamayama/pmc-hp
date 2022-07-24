@@ -55,7 +55,7 @@ export const LineHeight = () => {
           min={0}
           step={10}
           id={id}
-          value={guiStyle.lineHeight.value}
+          value={guiStyle.lineHeight.value === 0 ? '' : guiStyle.lineHeight.value}
           onChange={handleChangeInput}
         />
         <button

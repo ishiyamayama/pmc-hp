@@ -11,7 +11,9 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
   const setGuiStyle = useSetRecoilState(guiStyleState)
 
   return (
-    <div className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex font-inter font-medium text-[1rem] tracking-normal relative leading-[1]`}>
+    <div
+      className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex font-inter font-medium text-[1rem] tracking-normal relative leading-[1] z-50`}
+    >
       <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
         {router.asPath === '/' ? (
           <h1>
@@ -38,13 +40,13 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
           <LetterSpacing />
         </div>
       </div>
-      <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem]'>
+      <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] z-90 mdMin:relative'>
         <div className='grid gap-y-[.6rem] md:flex md:justify-between'>
           <BackgroundColor />
           <TextColor />
         </div>
         <button
-          className='w-[7.5rem] h-[3rem] rounded-full
+          className='w-[7.5rem] h-[3rem] rounded-full relative z-90
             border border-current font-inter text-[1rem]
             md:absolute md:right-0 md:top-[15.8rem] md:w-[7.2rem]
             focus-visible:text-background focus-visible:bg-text

@@ -13,6 +13,7 @@ export const LetterSpacing = () => {
   const ulRef = useRef<HTMLUListElement>(null)
 
   const handleChangeInput = (e: any) => {
+
     setGuiStyle((prevState) => ({
       ...prevState,
       letterSpacing: {
@@ -53,8 +54,9 @@ export const LetterSpacing = () => {
           className={style.input}
           type='number'
           step="0.1"
+          placeholder='0'
           id={id}
-          value={guiStyle.letterSpacing.value}
+          value={guiStyle.letterSpacing.value === 0 ? '' : guiStyle.letterSpacing.value}
           onChange={handleChangeInput}
         />
         <button
