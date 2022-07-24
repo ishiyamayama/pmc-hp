@@ -30,10 +30,6 @@ export const BackgroundColor = () => {
     }))
   }
 
-  useEffect(() => {
-    console.log(guiStyle.backgroundColor)
-  }, [guiStyle.backgroundColor])
-
   return (
     <div className={style.container}>
       <span className={style.label}>Background Color</span>

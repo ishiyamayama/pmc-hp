@@ -29,10 +29,6 @@ export const TextColor = () => {
     }))
   }
 
-  useEffect(() => {
-    console.log(guiStyle.color)
-  }, [guiStyle.color])
-
   return (
     <div className={style.container}>
       <span className={style.label} style={{ marginLeft: '-1px' }}>
