@@ -34,9 +34,7 @@ export const FontSize = () => {
   useEffect(() => {
     if (ulRef.current) {
       document.addEventListener('click', (e: Event) => {
-        if (ulRef.current && !ulRef.current.contains(e.target as Node)) {
-          isOpen && setIsOpen(false)
-        }
+        setIsOpen(false)
       })
     }
   }, [ulRef])
@@ -47,7 +45,14 @@ export const FontSize = () => {
         Font Size
       </label>
       <div className={style.inner}>
-        <input className={style.input} type='number' min={1} id={id} value={guiStyle.fontSize.value} onChange={handleChange} />
+        <input
+          className={style.input}
+          type='number'
+          min={1}
+          id={id}
+          value={guiStyle.fontSize.value}
+          onChange={handleChange}
+        />
         <button
           className={style.unit}
           onClick={(e) => {
