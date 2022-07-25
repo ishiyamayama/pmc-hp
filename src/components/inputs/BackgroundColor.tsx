@@ -57,7 +57,7 @@ export const BackgroundColor = () => {
               className='py-2'
               type='text'
               value={guiStyle.backgroundColor}
-              maxLength={7}
+              maxLength={20}
               pattern='[A-Fa-f0-9]{6}'
               onChange={(e) => {
                 setGuiStyle((prevState) => ({
