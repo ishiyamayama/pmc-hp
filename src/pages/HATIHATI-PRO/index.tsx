@@ -27,7 +27,7 @@ export const getStaticProps = async () => {
   const { fonts } = await fetchFonts()
   return {
     props: { overview, fonts },
-    revalidate: 20,
+    revalidate: 300,
   }
 }
 
