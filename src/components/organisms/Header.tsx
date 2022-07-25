@@ -32,7 +32,7 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
       </div>
       <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] md:mt-4'>
         <div className='w-full grid gap-y-[.6rem] md:flex md:justify-between'>
-          {/* <FontFamily fonts={fonts} /> */}
+          <FontFamily fonts={fonts} />
           <FontSize />
         </div>
         <div className='w-full grid gap-y-[.6rem] md:flex md:justify-between'>
@@ -42,8 +42,8 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
       </div>
       <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] z-90 mdMin:relative'>
         <div className='grid gap-y-[.6rem] md:flex md:justify-between'>
-          <BackgroundColor />
-          <TextColor />
+          {/* <BackgroundColor />
+          <TextColor /> */}
         </div>
         <button
           className='w-[7.5rem] h-[3rem] rounded-full relative z-90
