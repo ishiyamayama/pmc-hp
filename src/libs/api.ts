@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { createClient } from 'newt-client-js'
 import { primaryFonts } from 'const/primaryFonts'
+import dayjs from 'libs/dayjs'
 import { CategoryContentType, DataTableContentType, LinksContentType, OverviewContentType } from 'types'
 import { PhotosContentType, PostContentType, BiographyContentType } from 'types'
 
@@ -28,6 +29,9 @@ export const fetchPosts = async () => {
     query: { depth: 1, limit: 1000 },
   })
   items.sort((a, b) => (a.date > b.date ? -1 : 1))
+  items.map((item: PostContentType) => {
+    item.date = dayjs(item.date).format('YYYY/MM/DD')
+  })
   return { posts: items }
 }
 

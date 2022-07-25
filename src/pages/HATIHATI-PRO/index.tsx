@@ -1,5 +1,5 @@
 import { Header } from 'components/organisms'
-import { fetchOverview, fetchFonts } from 'lib/api'
+import { fetchOverview, fetchFonts } from 'libs/api'
 import style from 'styles/modules/article.module.sass'
 import { OverviewContentType } from 'types'
 

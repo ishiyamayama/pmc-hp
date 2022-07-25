@@ -2,7 +2,7 @@ import { htmlToText } from 'html-to-text'
 import NextHeadSeo from 'next-head-seo'
 import { Header, Posts, Profile } from 'components/organisms'
 import { config } from 'const/siteData'
-import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'lib/api'
+import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'libs/api'
 import {
   CategoryContentType,
   PostContentType,

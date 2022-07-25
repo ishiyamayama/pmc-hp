@@ -1,5 +1,5 @@
 import { Header, Posts, Profile } from 'components/organisms'
-import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'lib/api'
+import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'libs/api'
 import {
   CategoryContentType,
   PostContentType,
