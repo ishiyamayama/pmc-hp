@@ -19,6 +19,7 @@ const AppLayout = ({ children }: Props) => {
   }, [guiStyle])
   return (
     <div className='min-h-full p-[5rem_5rem_5rem] lg:mdMin:p-[4rem_2.5rem_5rem] md:p-[0rem_1.5rem_2rem]'>
+      <Header />
       <ColorScheme />
       <main style={innerStyle}>
         {children}

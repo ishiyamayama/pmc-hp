@@ -21,6 +21,7 @@
     "newt-client-js": "^3.0.2",
     "next": "12.1.5",
     "next-head-seo": "^0.1.3",
+    "next-plugin-preval": "^1.2.4",
     "react": "18.1.0",
     "react-colorful": "^5.5.1",
     "react-dom": "18.1.0",

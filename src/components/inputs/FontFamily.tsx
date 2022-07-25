@@ -3,9 +3,12 @@ import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
 import { Divider } from 'components/atoms'
 import { primaryFonts } from 'const/primaryFonts'
+import data from 'libs/getGoogleFonts.preval'
 import { guiStyleState } from 'stores/guiStyleState'
 
-export const FontFamily = ({ fonts }: { fonts: string[] }) => {
+const { fonts } = data
+
+export const FontFamily = () => {
   const defaultFont = 'Noto Serif JP'
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
   const [inputValue, setInputValue] = useState(defaultFont)
@@ -28,7 +31,9 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
     const timeId = setTimeout(() => {
       if (inputValue !== guiStyle.fontFamily && inputValue !== '') {
         setViewFonts(fonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())))
-        setViewPrimaryFonts(primaryFonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())))
+        setViewPrimaryFonts(
+          primaryFonts.filter((font) => font.toLowerCase().includes(inputValue.toLowerCase())),
+        )
       } else {
         setViewFonts(fonts)
         setViewPrimaryFonts(primaryFonts)
@@ -42,7 +47,10 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
     if (inputRef.current && ulRef.current) {
       document.addEventListener('click', (e: Event) => {
         if (inputRef.current && ulRef.current) {
-          if (!inputRef.current.contains(e.target as Node) && !ulRef.current.contains(e.target as Node)) {
+          if (
+            !inputRef.current.contains(e.target as Node) &&
+            !ulRef.current.contains(e.target as Node)
+          ) {
             setIsOpen(false)
           }
         }
@@ -54,7 +62,10 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
     <div className={style.container}>
       <link
         rel='stylesheet'
-        href={`https://fonts.googleapis.com/css2?family=${guiStyle.fontFamily.replace(/\s/g, '+')}:wght@400`}
+        href={`https://fonts.googleapis.com/css2?family=${guiStyle.fontFamily.replace(
+          /\s/g,
+          '+',
+        )}:wght@400`}
       />
       <label htmlFor={id} className={style.label}>
         Font Family
@@ -84,7 +95,12 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
         >
           {viewPrimaryFonts.map((font) => (
             <li key={font}>
-              <button className={`${style.fontButton} ${guiStyle.fontFamily === font && 'text-background bg-text'}`} onClick={() => handleClickButton(font)}>
+              <button
+                className={`${style.fontButton} ${
+                  guiStyle.fontFamily === font && 'text-background bg-text'
+                }`}
+                onClick={() => handleClickButton(font)}
+              >
                 {font}
               </button>
             </li>
@@ -92,7 +108,13 @@ export const FontFamily = ({ fonts }: { fonts: string[] }) => {
           {viewPrimaryFonts.length ? <Divider /> : null}
           {viewFonts.map((font) => (
             <li key={font} className={`w-full`}>
-              <button className={`${style.fontButton} ${guiStyle.fontFamily === font && 'text-background bg-text'}`} onClick={() => handleClickButton(font)} tabIndex={-1}>
+              <button
+                className={`${style.fontButton} ${
+                  guiStyle.fontFamily === font && 'text-background bg-text'
+                }`}
+                onClick={() => handleClickButton(font)}
+                tabIndex={-1}
+              >
                 {font}
               </button>
             </li>

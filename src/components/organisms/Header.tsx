@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { useSetRecoilState } from 'recoil'
 import { Link, Divider } from 'components/atoms'
 import { FontFamily, FontSize, LineHeight, LetterSpacing, BackgroundColor, TextColor } from 'components/inputs'
@@ -6,7 +5,7 @@ import { Logo } from 'components/svg'
 import { defaultStyles } from 'const'
 import { guiStyleState } from 'stores/guiStyleState'
 
-export const Header = ({ fonts, isTop }: { fonts: string[]; isTop?: boolean }) => {
+export const Header = ({ isTop }: { isTop?: boolean }) => {
   const setGuiStyle = useSetRecoilState(guiStyleState)
   return (
     <div
@@ -30,7 +29,7 @@ export const Header = ({ fonts, isTop }: { fonts: string[]; isTop?: boolean }) =
       </div>
       <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] md:mt-4'>
         <div className='w-full grid gap-y-[.6rem] md:flex md:justify-between'>
-          <FontFamily fonts={fonts} />
+          <FontFamily />
           <FontSize />
         </div>
         <div className='w-full grid gap-y-[.6rem] md:flex md:justify-between'>

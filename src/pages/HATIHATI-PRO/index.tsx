@@ -1,32 +1,25 @@
 import { Header } from 'components/organisms'
-import { fetchOverview, fetchFonts } from 'libs/api'
+import { fetchOverview } from 'libs/api'
 import style from 'styles/modules/article.module.sass'
 import { OverviewContentType } from 'types'
 
-type Props = {
-  overview: OverviewContentType
-  fonts: string[]
-}
+type Props = { overview: OverviewContentType }
 
-const Overview = ({ overview, fonts }: Props) => {
+const Overview = ({ overview }: Props) => {
   return (
-    <>
-      <Header fonts={fonts} />
-      <div className='mt-[6rem] md:mt-16 mdMin:grid-head'>
-        <h1 className='text-[24px] mdMin:pt-[1rem]'>HATIHATI PRO.</h1>
-        <div className='md:mt-16'>
-          <div className={style.article} dangerouslySetInnerHTML={{ __html: overview.body }} />
-        </div>
+    <div className='mt-[6rem] md:mt-16 mdMin:grid-head'>
+      <h1 className='text-[24px] mdMin:pt-[1rem]'>HATIHATI PRO.</h1>
+      <div className='md:mt-16'>
+        <div className={style.article} dangerouslySetInnerHTML={{ __html: overview.body }} />
       </div>
-    </>
+    </div>
   )
 }
 
 export const getStaticProps = async () => {
   const { overview } = await fetchOverview()
-  const { fonts } = await fetchFonts()
   return {
-    props: { overview, fonts },
+    props: { overview },
     revalidate: 300,
   }
 }
