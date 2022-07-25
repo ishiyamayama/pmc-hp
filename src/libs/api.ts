@@ -14,7 +14,7 @@ const newtClient = createClient({
 
 export const fetchFonts = async () => {
   const { data } = await axios.get(
-    'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC7W_8e69CzoftwFnIrHFTBb4PdSapGsJg',
+    'https://www.googleapis.com/webfonts/v1/webfonts?key=' + process.env.GOOGLE_FONTS_API_KEY as string
   )
   const fonts: string[] = []
   data.items.forEach((font: any) => {
