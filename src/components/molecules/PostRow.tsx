@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { Link } from 'components/atoms'
 import { categoryColors } from 'const/categoryColors'

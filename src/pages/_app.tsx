@@ -1,6 +1,5 @@
 import NextHeadSeo from 'next-head-seo'
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { useEffect,useState } from 'react'
 import { RecoilRoot } from 'recoil'
 import { AppLayout } from 'components/templates/AppLayout'

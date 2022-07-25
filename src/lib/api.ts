@@ -31,15 +31,6 @@ export const fetchPosts = async () => {
   return { posts: items }
 }
 
-// export const fetchPostById = async (id: string) => {
-//   const post = await newtClient.getContent<PostContentType>({
-//     appUid: process.env.APP_UID_POSTS as string,
-//     modelUid: 'post',
-//     contentId: id,
-//   })
-//   return { post }
-// }
-
 export const fetchCategory = async () => {
   const { items } = await newtClient.getContents<CategoryContentType>({
     appUid: process.env.APP_UID_POSTS as string,

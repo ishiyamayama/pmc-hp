@@ -1,5 +1,5 @@
-import { useEffect, useState, useId, useRef } from 'react'
-import { RgbaColorPicker, HexColorPicker, HexColorInput } from 'react-colorful'
+import { useEffect, useState, useRef } from 'react';
+import { RgbaColorPicker } from 'react-colorful';
 import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
 import { guiStyleState } from 'stores/guiStyleState'
@@ -7,7 +7,6 @@ import { guiStyleState } from 'stores/guiStyleState'
 export const BackgroundColor = () => {
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
   const [isOpen, setIsOpen] = useState(false)
-  // const [color, setColor] = useState(guiStyle.backgroundColor)
   const modalRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 

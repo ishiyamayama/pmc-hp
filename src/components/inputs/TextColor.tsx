@@ -1,5 +1,5 @@
-import { useEffect, useState, useId, useRef } from 'react'
-import { RgbaColorPicker, HexColorPicker, HexColorInput } from 'react-colorful'
+import { useEffect, useState, useRef } from 'react';
+import { RgbaColorPicker } from 'react-colorful';
 import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
 import { guiStyleState } from 'stores/guiStyleState'
