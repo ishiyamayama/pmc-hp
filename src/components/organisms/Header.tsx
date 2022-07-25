@@ -6,20 +6,26 @@ import { Logo } from 'components/svg'
 import { defaultStyles } from 'const'
 import { guiStyleState } from 'stores/guiStyleState'
 
-export const Header = ({ fonts }: { fonts: string[] }) => {
-  const router = useRouter()
+export const Header = ({ fonts, isTop }: { fonts: string[]; isTop?: boolean }) => {
   const setGuiStyle = useSetRecoilState(guiStyleState)
-
   return (
     <div
       className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex font-inter font-medium text-[1rem] tracking-normal relative leading-[1] z-50`}
     >
       <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
-        <div>
-          <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
-            <Logo />
-          </Link>
-        </div>
+        {isTop ? (
+          <h1>
+            <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+              <Logo />
+            </Link>
+          </h1>
+        ) : (
+          <div>
+            <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+              <Logo />
+            </Link>
+          </div>
+        )}
         <Divider className='absolute bottom-0 w-full mdMin:hidden' />
       </div>
       <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] md:mt-4'>

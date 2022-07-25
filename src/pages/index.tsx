@@ -22,7 +22,7 @@ type Props = {
 const Top = ({ fonts, categories, posts, bio, dataTable, photos, links }: Props) => {
   return (
     <>
-      <Header fonts={fonts} />
+      <Header fonts={fonts} isTop={true} />
       <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
       <Posts categories={categories} posts={posts} />
     </>
