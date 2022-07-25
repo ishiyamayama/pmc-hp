@@ -15,19 +15,11 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
       className={`mdMin:grid-head md:flex-col md:gap-y-4 md:flex font-inter font-medium text-[1rem] tracking-normal relative leading-[1] z-50`}
     >
       <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
-        {router.asPath === '/' ? (
-          <h1>
-            <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
-              <Logo />
-            </Link>
-          </h1>
-        ) : (
-          <div>
-            <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
-              <Logo />
-            </Link>
-          </div>
-        )}
+        <div>
+          <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+            <Logo />
+          </Link>
+        </div>
         <Divider className='absolute bottom-0 w-full mdMin:hidden' />
       </div>
       <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] md:mt-4'>
@@ -42,8 +34,8 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
       </div>
       <div className='flex mdMin:justify-between md:flex-col md:gap-y-4 gap-x-[6.1%] md:pr-[9rem] z-90 mdMin:relative'>
         <div className='grid gap-y-[.6rem] md:flex md:justify-between'>
-          {/* <BackgroundColor />
-          <TextColor /> */}
+          <BackgroundColor />
+          <TextColor />
         </div>
         <button
           className='w-[7.5rem] h-[3rem] rounded-full relative z-90
