@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil'
 import { CategoryButton, Divider } from 'components/atoms'
 import { PostRow } from 'components/molecules'
 import { categoryState } from 'stores/categoryState'
+import { searchState } from 'stores/searchState'
 import { CategoryContentType, PostContentType } from 'types'
 
 type PostsProps = {
@@ -13,10 +14,10 @@ type PostsProps = {
 
 export const Posts = ({ currentId, categories, posts }: PostsProps) => {
   const [currentCategory, setCurrentCategory] = useRecoilState(categoryState)
+  const [searchValue, setSearchValue] = useRecoilState(searchState)
   const [viewPosts, setViewPosts] = useState<PostContentType[]>(
     currentCategory ? posts.filter((post) => post.category.name === currentCategory) : posts,
   )
-  const [searchValue, setSearchValue] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const currentPost = posts.find((post) => post.slug === currentId)
   const singleView = currentPost?.hideList
