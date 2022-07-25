@@ -1,5 +1,8 @@
-import { Posts, Profile } from 'components/organisms'
-import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory } from 'lib/api'
+import { htmlToText } from 'html-to-text'
+import NextHeadSeo from 'next-head-seo'
+import { Header, Posts, Profile } from 'components/organisms'
+import { config } from 'const/siteData'
+import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'lib/api'
 import {
   CategoryContentType,
   PostContentType,
@@ -10,6 +13,7 @@ import {
 } from 'types'
 
 type Props = {
+  fonts: string[]
   categories: CategoryContentType[]
   posts: PostContentType[]
   currentId: string
@@ -19,9 +23,29 @@ type Props = {
   links: LinksContentType[]
 }
 
-const Detail = ({ categories, posts, currentId, bio, dataTable, photos, links }: Props) => {
+const Detail = ({ fonts, categories, posts, currentId, bio, dataTable, photos, links }: Props) => {
+  const currentPost = posts.find((post) => post.slug === currentId)
+  const description = htmlToText(currentPost?.body || '', {
+    singleNewLineParagraphs: true,
+    selectors: [
+      { selector: 'img', format: 'skip' },
+      { selector: 'iframe', format: 'skip' },
+    ],
+  }).slice(0, 700)
+
   return (
     <>
+      <NextHeadSeo
+        title={currentPost?.title + ' | ' + config.siteName}
+        description={description}
+        twitter={{ card: 'summary_large_image' }}
+        og={{
+          title: currentPost?.title + ' | ' + config.siteName,
+          description: description,
+          image: currentPost?.coverImage?.src || config.ogImage,
+        }}
+      />
+      <Header fonts={fonts} />
       <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
       <Posts currentId={currentId} categories={categories} posts={posts} />
     </>
@@ -36,6 +60,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: { params: { id: string } }) => {
   const currentId = context.params.id
+  const { fonts } = await fetchFonts()
   const { categories } = await fetchCategory()
   const { posts } = await fetchPosts()
   const { bio } = await fetchBiography()
@@ -43,7 +68,7 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
   const { photos } = await fetchPhotos()
   const { links } = await fetchLinks()
   return {
-    props: { categories, posts, currentId, bio, dataTable, photos, links },
+    props: { fonts, categories, posts, currentId, bio, dataTable, photos, links },
     revalidate: 10,
   }
 }

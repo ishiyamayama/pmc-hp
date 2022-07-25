@@ -1,45 +1,12 @@
 @tailwind utilities;
 @layer utilities {
   .grid-head {
-    @apply grid w-full grid-cols-[22.7%_48.5%_22.7%] justify-between;
+    @apply grid w-full grid-cols-[22.7%_48.5%_23%] justify-between;
   }
   .grid-post {
     @apply grid gap-x-[4rem] md:gap-x-[2rem] w-full grid-cols-[14%_1fr_10%_5.5%_5.5%] md:grid-cols-[21.2%_1fr_1.5rem] justify-between items-start;
   }
   .grid-body {
     @apply grid gap-x-[4rem] w-full grid-cols-[14%_1fr_calc(21%+8rem)] justify-between items-start;
-  }
-}
-
-@layer utilities {
-  .head-xl {
-    @apply text-[9.0rem] font-[600] text-zinc-700 font-avenir leading-[9rem] tracking-normal;
-  }
-  .head-l {
-    @apply text-[3rem] font-[600] text-zinc-700 font-helvetica tracking-wide leading-[1.2];
-  }
-  .para-l {
-    @apply text-[1.4rem] font-[400];
-  }
-  .para-m {
-    @apply text-[1.3rem];
-  }
-  .para-s {
-    @apply text-[1.2rem];
-  }
-  .para-xs {
-    @apply text-[1.1rem] tracking-wider;
-  }
-  .note {
-    @apply text-[1.2rem] font-metro tracking-widest font-medium;
-  }
-  .note-s {
-    @apply text-[1.2rem] font-metro tracking-wide;
-  }
-  .note-xs {
-    @apply text-[1rem] font-metro tracking-wide;
-  }
-  .number {
-    @apply tracking-wider;
   }
 }

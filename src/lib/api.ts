@@ -1,4 +1,6 @@
+import axios from 'axios'
 import { createClient } from 'newt-client-js'
+import { primaryFonts } from 'const/primaryFonts'
 import { CategoryContentType, DataTableContentType, LinksContentType, OverviewContentType } from 'types'
 import { PhotosContentType, PostContentType, BiographyContentType } from 'types'
 
@@ -7,6 +9,17 @@ const newtClient = createClient({
   token: process.env.API_TOKEN as string,
   apiType: process.env.API_TYPE as 'cdn' | 'api',
 })
+
+export const fetchFonts = async () => {
+  const { data } = await axios.get(
+    'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC7W_8e69CzoftwFnIrHFTBb4PdSapGsJg',
+  )
+  const fonts: string[] = []
+  data.items.forEach((font: any) => {
+    font.variants?.includes('regular') && !primaryFonts.includes(font.family) && fonts.push(font.family)
+  })
+  return { fonts: fonts }
+}
 
 export const fetchPosts = async () => {
   const { items } = await newtClient.getContents<PostContentType>({
@@ -18,30 +31,13 @@ export const fetchPosts = async () => {
   return { posts: items }
 }
 
-// export const fetchPostById = async (id: string) => {
-//   const post = await newtClient.getContent<PostContentType>({
-//     appUid: process.env.APP_UID_POSTS as string,
-//     modelUid: 'post',
-//     contentId: id,
-//   })
-//   return { post }
-// }
-
 export const fetchCategory = async () => {
   const { items } = await newtClient.getContents<CategoryContentType>({
     appUid: process.env.APP_UID_POSTS as string,
     modelUid: 'category',
     query: { depth: 1, limit: 1000, order: ['createdAt'] },
   })
-  items.sort((a, b) => {
-    if (a.order > b.order) {
-      return -1
-    }
-    if (a.order < b.order) {
-      return 1
-    }
-    return 0
-  }).reverse()
+  items.sort((a, b) => (a.order > b.order ? -1 : 1)).reverse()
   return { categories: items }
 }
 
@@ -81,6 +77,7 @@ export const fetchPhotos = async () => {
     modelUid: 'photo',
     query: { depth: 1, order: ['sortOrder'], limit: 1000 },
   })
+  items.sort((a, b) => (a.order > b.order ? -1 : 1)).reverse()
   return { photos: items }
 }
 

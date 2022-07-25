@@ -2,14 +2,14 @@
   --color-white: #fff;
   --color-black: #000;
   --color-border: #808080;
-  --color-gray: #c2c9cc;
-  --color-yellow: #f5d849;
-  --color-brown: #b28f6b;
-  --color-blue: #3d87cc;
-  --color-orange: #ff5c38;
-  --color-green: #36b943;
-  --color-theme-text: #000000;
-  --color-theme-bg: #ffffff;
+  --color-gray: rgb(194, 201, 204);
+  --color-yellow: rgb(245, 216, 73);
+  --color-brown: rgb(178, 143, 107);
+  --color-blue: rgb(61, 135, 204);
+  --color-orange: rgb(255, 92, 56);
+  --color-green: rgb(54, 185, 67);
+  --color-text: #000;
+  --color-background: #fff;
   --font-noto: 'Noto Serif JP', serif;
   --font-inter: 'Inter', sans-serif;
 }

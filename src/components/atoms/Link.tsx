@@ -10,12 +10,13 @@ type Props = {
 
 const Link = ({ href, className, children, target = '_self', style }: Props) => {
   return href ? (
-    <NextLink href={href} scroll={false}>
+    <NextLink href={href} scroll={false} passHref>
       <a
         className={'block ' + className}
         target={target}
         rel={target === '_blank' ? 'noreferrer' : undefined}
-        style={style}>
+        style={style}
+      >
         {children}
       </a>
     </NextLink>

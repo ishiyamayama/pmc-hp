@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
-import { Posts, Profile } from 'components/organisms'
-import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory } from 'lib/api'
+import { Header, Posts, Profile } from 'components/organisms'
+import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'lib/api'
 import {
   CategoryContentType,
   PostContentType,
@@ -11,6 +10,7 @@ import {
 } from 'types'
 
 type Props = {
+  fonts: string[]
   categories: CategoryContentType[]
   posts: PostContentType[]
   bio: BiographyContentType
@@ -19,9 +19,10 @@ type Props = {
   links: LinksContentType[]
 }
 
-const Top = ({ categories, posts, bio, dataTable, photos, links }: Props) => {
+const Top = ({ fonts, categories, posts, bio, dataTable, photos, links }: Props) => {
   return (
     <>
+      <Header fonts={fonts} />
       <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
       <Posts categories={categories} posts={posts} />
     </>
@@ -29,6 +30,7 @@ const Top = ({ categories, posts, bio, dataTable, photos, links }: Props) => {
 }
 
 export const getStaticProps = async () => {
+  const { fonts } = await fetchFonts()
   const { categories } = await fetchCategory()
   const { posts } = await fetchPosts()
   const { bio } = await fetchBiography()
@@ -36,7 +38,7 @@ export const getStaticProps = async () => {
   const { photos } = await fetchPhotos()
   const { links } = await fetchLinks()
   return {
-    props: { categories, posts, bio, dataTable, photos, links },
+    props: { fonts, categories, posts, bio, dataTable, photos, links },
     revalidate: 10,
   }
 }
