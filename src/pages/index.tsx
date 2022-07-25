@@ -1,4 +1,3 @@
-import NextHeadSeo from 'next-head-seo'
 import { Header, Posts, Profile } from 'components/organisms'
 import { fetchPosts, fetchBiography, fetchDataTable, fetchPhotos, fetchLinks, fetchCategory, fetchFonts } from 'lib/api'
 import {
@@ -24,7 +23,6 @@ const Top = ({ fonts, categories, posts, bio, dataTable, photos, links }: Props)
   return (
     <>
       <Header fonts={fonts} />
-      <NextHeadSeo description={bio.japanese} />
       <Profile bio={bio} dataTable={dataTable} photos={photos} links={links} />
       <Posts categories={categories} posts={posts} />
     </>
