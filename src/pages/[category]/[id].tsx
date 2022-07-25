@@ -69,7 +69,6 @@ export const getStaticProps = async (context: { params: { id: string } }) => {
   const { links } = await fetchLinks()
   return {
     props: { fonts, categories, posts, currentId, bio, dataTable, photos, links },
-    revalidate: 300,
   }
 }
 
