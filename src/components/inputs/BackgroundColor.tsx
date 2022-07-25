@@ -60,9 +60,6 @@ export const BackgroundColor = () => {
               maxLength={7}
               pattern='[A-Fa-f0-9]{6}'
               onChange={(e) => {
-                if (e.target.value[0] !== '#') {
-                  e.target.value = '#' + e.target.value
-                }
                 setGuiStyle((prevState) => ({
                   ...prevState,
                   backgroundColor: e.target.value.toUpperCase(),
