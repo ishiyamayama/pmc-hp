@@ -1,17 +1,13 @@
 import NextHeadSeo from 'next-head-seo'
 import type { AppProps } from 'next/app'
-import { useEffect,useState } from 'react'
+import { useEffect } from 'react'
 import { RecoilRoot } from 'recoil'
 import { AppLayout } from 'components/templates/AppLayout'
 import { config, meta } from 'const/siteData'
+import { Hello } from 'libs/hello'
 import 'styles/main.sass'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const [initialized, setInitialized] = useState(false)
-  useEffect(() => {
-    !initialized && console.log("パソコン音楽クラブのHPへようこそ!")
-    setInitialized(true)
-  }, [initialized])
   useEffect(() => {
     history.scrollRestoration = 'manual'
     router.beforePopState((state) => {
@@ -24,6 +20,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
   return (
     <>
+      <Hello />
       <NextHeadSeo
         title={meta[slug] ? meta[slug].title : config.siteName}
         description={meta[slug] ? meta[slug].description : ''}
