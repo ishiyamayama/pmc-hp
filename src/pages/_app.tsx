@@ -1,13 +1,18 @@
 import NextHeadSeo from 'next-head-seo'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import { RecoilRoot } from 'recoil'
 import { AppLayout } from 'components/templates/AppLayout'
 import { config, meta } from 'const/siteData'
 import 'styles/main.sass'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const [initialized, setInitialized] = useState(false)
+  useEffect(() => {
+    !initialized && console.log("パソコン音楽クラブのHPへようこそ！")
+    setInitialized(true)
+  }, [initialized])
   useEffect(() => {
     history.scrollRestoration = 'manual'
     router.beforePopState((state) => {

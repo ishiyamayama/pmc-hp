@@ -13,7 +13,12 @@ type PropsType = {
 
 export const PostRow = ({ post, currentId }: PropsType) => {
   const { category, title, date, body, hideList, coverImage } = post
-  const dateString = dayjs(date).format('YYYY/MM/DD')
+  //timezoneをAzia/Tokyoに設定して、日付を変換する
+  const dateFormatted = new Date(date).toLocaleString('ja-JP', {
+    timeZone: 'Asia/Tokyo',
+  })
+  //時間を削除
+  const dateFormattedWithoutTime = dateFormatted.split(' ')[0]
   const isCurrent = currentId === post.slug
   const ref = useRef<HTMLAnchorElement>(null)
 
@@ -31,7 +36,7 @@ export const PostRow = ({ post, currentId }: PropsType) => {
     <article id={`${post.slug}`}>
       <Link href={href} className='mdMin:hover:opacity-60 focus-visible:text-[blue] !outline-offset-0'>
         <span className={`p-[.9rem_0] md:p-[1rem_0] grid-post`} ref={ref}>
-          <time>{dateString}</time>
+          <time>{dateFormattedWithoutTime}</time>
           {isCurrent ? <h1>{title}</h1> : <p>{title}</p>}
           <span className='md:hidden'>{category.name}</span>
           <span className='md:hidden min-w-[1em] flex mt-[.2em]'>
