@@ -5,7 +5,7 @@ import { categoryState } from 'stores/categoryState'
 export const ColorScheme = () => {
   const currentcategory = useRecoilValue(categoryState)
   return (
-    <div className='fixed z-10 top-0 right-0 grid h-[2rem] w-[10rem] grid-cols-[1fr_1fr_1fr_1fr_1fr]'>
+    <div className='fixed z-[100] top-0 right-0 grid h-[2rem] w-[10rem] grid-cols-[1fr_1fr_1fr_1fr_1fr]'>
       <span className='bg-gray' />
       <span className='bg-yellow' />
       <span className='bg-brown' />
