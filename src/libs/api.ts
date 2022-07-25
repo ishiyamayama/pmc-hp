@@ -12,17 +12,6 @@ const newtClient = createClient({
   apiType: process.env.API_TYPE as 'cdn' | 'api',
 })
 
-export const fetchFonts = async () => {
-  const { data } = await axios.get(
-    'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyC7NrtbOhj3f4eOHNweT5tPGvt3aBBtMB4'
-  )
-  const fonts: string[] = []
-  data.items.forEach((font: any) => {
-    font.variants?.includes('regular') && !primaryFonts.includes(font.family) && fonts.push(font.family)
-  })
-  return { fonts: fonts }
-}
-
 export const fetchPosts = async () => {
   const { items } = await newtClient.getContents<PostContentType>({
     appUid: process.env.APP_UID_POSTS as string,
