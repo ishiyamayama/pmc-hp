@@ -30,7 +30,7 @@ export const fetchPosts = async () => {
   })
   items.sort((a, b) => (a.date > b.date ? -1 : 1))
   items.map((item: PostContentType) => {
-    item.date = dayjs(item.date).format('YYYY/MM/DD')
+    item.date = dayjs(item.date).tz().format('YYYY/MM/DD')
   })
   return { posts: items }
 }
