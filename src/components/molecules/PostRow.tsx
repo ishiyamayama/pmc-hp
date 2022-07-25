@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { Link } from 'components/atoms'
@@ -11,9 +12,8 @@ type PropsType = {
 }
 
 export const PostRow = ({ post, currentId }: PropsType) => {
-  const router = useRouter()
   const { category, title, date, body, hideList, coverImage } = post
-  const dateString = date.split('T')[0].replace(/-/g, '/')
+  const dateString = dayjs(date).format('YYYY/MM/DD')
   const isCurrent = currentId === post.slug
   const ref = useRef<HTMLAnchorElement>(null)
 
@@ -29,11 +29,8 @@ export const PostRow = ({ post, currentId }: PropsType) => {
 
   return (
     <article id={`${post.slug}`}>
-      <Link href={href} className="mdMin:hover:opacity-60 focus-visible:text-[blue] !outline-offset-0">
-        <span
-          className={`p-[.9rem_0] md:p-[1rem_0] grid-post`}
-          ref={ref}
-        >
+      <Link href={href} className='mdMin:hover:opacity-60 focus-visible:text-[blue] !outline-offset-0'>
+        <span className={`p-[.9rem_0] md:p-[1rem_0] grid-post`} ref={ref}>
           <time>{dateString}</time>
           {isCurrent ? <h1>{title}</h1> : <p>{title}</p>}
           <span className='md:hidden'>{category.name}</span>
