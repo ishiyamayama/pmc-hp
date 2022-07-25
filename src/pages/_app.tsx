@@ -8,6 +8,7 @@ import { config, meta } from 'const/siteData'
 import 'styles/main.sass'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  console.log("パソコン音楽クラブのHPへようこそ!")
   useEffect(() => {
     history.scrollRestoration = 'manual'
     router.beforePopState((state) => {
