@@ -30,10 +30,10 @@ export const fetchPosts = async () => {
     query: { depth: 1, limit: 1000 },
   })
   items.sort((a, b) => (a.date > b.date ? -1 : 1))
-  items.map((item: PostContentType) => {
-    const d = utcToZonedTime(item.date, 'Asia/Tokyo')
-    item.date = dayjs.utc(d).tz('Asia/Tokyo').format('YYYY/MM/DD')
-  })
+  // items.map((item: PostContentType) => {
+  //   const d = utcToZonedTime(item.date, 'Asia/Tokyo')
+  //   item.date = dayjs.utc(d).tz('Asia/Tokyo').format('YYYY/MM/DD')
+  // })
   return { posts: items }
 }
 
