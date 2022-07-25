@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { RecoilRoot } from 'recoil'
 import { AppLayout } from 'components/templates/AppLayout'
 import { config, meta } from 'const/siteData'
-import { Hello } from 'libs/hello'
+import { Hello } from 'libs/Hello'
 import 'styles/main.sass'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
