@@ -43,7 +43,7 @@ export const BackgroundColor = () => {
           ref={buttonRef}
         />
         {isOpen && (
-          <div className={`${style.colorModal} md:!left-[-1px] md:!translate-x-0`} ref={modalRef}>
+          <div className={`${style.colorModal} md:!left-[8px] md:!translate-x-0`} ref={modalRef}>
             <HexColorPicker
               color={guiStyle.backgroundColor}
               onChange={(color) => {
