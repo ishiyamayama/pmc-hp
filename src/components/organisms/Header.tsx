@@ -17,14 +17,14 @@ export const Header = ({ fonts }: { fonts: string[] }) => {
       <div className='md:justify-center md:py-[6rem] md:flex md:relative'>
         {router.asPath === '/' ? (
           <h1>
-            <Link href='/' className='w-full max-w-[28.5rem] md:w-[26.2rem]'>
-              <img className="w-full h-auto" src="/pmc-logo.png" alt="パソコン音楽クラブ" />
+            <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+              <Logo />
             </Link>
           </h1>
         ) : (
           <div>
-            <Link href='/' className='w-full max-w-[28.5rem] md:w-[26.2rem]'>
-              <img className="w-full h-auto" src="/pmc-logo.png" alt="パソコン音楽クラブ" />
+            <Link href='/' className='w-full max-w-[26.1rem] md:w-[26.2rem]'>
+              <Logo />
             </Link>
           </div>
         )}
