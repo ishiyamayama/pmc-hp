@@ -10,7 +10,7 @@ import 'styles/main.sass'
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [initialized, setInitialized] = useState(false)
   useEffect(() => {
-    !initialized && console.log("パソコン音楽クラブのHPへようこそ！")
+    !initialized && console.log("パソコン音楽クラブのHPへようこそ!")
     setInitialized(true)
   }, [initialized])
   useEffect(() => {

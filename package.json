@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next build && next export",
+    "dev": "NODE_ICU_DATA=node_modules/full-icu next dev",
+    "build": "NODE_ICU_DATA=node_modules/full-icu next build",
+    "start": "NODE_ICU_DATA=node_modules/full-icu next start",
+    "export": "NODE_ICU_DATA=node_modules/full-icu next build && NODE_ICU_DATA=node_modules/full-icu next export",
     "lint": "next lint --dir src",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
-    "@compai/css-gui": "0.0.127",
     "axios": "^0.27.2",
     "dayjs": "^1.11.4",
+    "full-icu": "^1.4.0",
     "html-to-text": "^8.2.0",
     "newt-client-js": "^3.0.2",
     "next": "12.1.5",
