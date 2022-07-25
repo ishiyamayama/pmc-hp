@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { utcToZonedTime } from 'date-fns-tz'
 import { createClient } from 'newt-client-js'
 import { primaryFonts } from 'const/primaryFonts'
 import dayjs from 'libs/dayjs'
@@ -31,7 +32,8 @@ export const fetchPosts = async () => {
   items.sort((a, b) => (a.date > b.date ? -1 : 1))
   console.log(items[0].date)
   items.map((item: PostContentType) => {
-    item.date = dayjs.utc(item.date).tz().local().format('YYYY/MM/DD')
+    const d = utcToZonedTime(item.date, 'Asia/Tokyo')
+    item.date = dayjs.utc(d).format('YYYY/MM/DD')
   })
   console.log(items[0].date)
   return { posts: items }
