@@ -29,9 +29,11 @@ export const fetchPosts = async () => {
     query: { depth: 1, limit: 1000 },
   })
   items.sort((a, b) => (a.date > b.date ? -1 : 1))
+  console.log(items[0].date)
   items.map((item: PostContentType) => {
-    item.date = dayjs(item.date).tz().format('YYYY/MM/DD')
+    item.date = dayjs.utc(item.date).tz().local().format('YYYY/MM/DD')
   })
+  console.log(items[0].date)
   return { posts: items }
 }
 
