@@ -53,7 +53,7 @@ export const FontSize = () => {
           className={style.input}
           type='number'
           min={1}
-          max={100}
+          max={300}
           id={id}
           value={guiStyle.fontSize.value === 0 ? '' : guiStyle.fontSize.value}
           onChange={handleChangeInput}
