@@ -1,4 +1,4 @@
-import { useEffect, useState, useId, useRef } from 'react'
+import { ChangeEvent, useEffect, useState, useId, useRef } from 'react'
 const unitList = ['px', 'rem', 'em', 'vh', 'vw', 'vmin', 'vmax', '%']
 import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
@@ -12,7 +12,7 @@ export const LineHeight = () => {
   const id = useId()
   const ulRef = useRef<HTMLUListElement>(null)
 
-  const handleChangeInput = (e: any) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setGuiStyle((prevState) => ({
       ...prevState,
       lineHeight: {

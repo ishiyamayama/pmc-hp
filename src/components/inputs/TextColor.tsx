@@ -1,8 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
-import { RgbaColorPicker } from 'react-colorful';
+import { useEffect, useState, useRef } from 'react'
+import { HexColorPicker } from 'react-colorful'
 import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
 import { guiStyleState } from 'stores/guiStyleState'
+
+const swatchList = ['#000000', '#FFFFFF', '#C2C9CC', '#F5D849', '#B28F6B', '#3D87CC', '#FF5C38', '#36B943']
 
 export const TextColor = () => {
   const [guiStyle, setGuiStyle] = useRecoilState(guiStyleState)
@@ -22,7 +24,7 @@ export const TextColor = () => {
     })
   }, [])
 
-  const handleClickPalette = (color: { r: number; g: number; b: number; a: number }) => {
+  const handleClickPalette = (color: string) => {
     setGuiStyle((prevState) => ({ ...prevState, color: color }))
   }
 
@@ -35,46 +37,48 @@ export const TextColor = () => {
         <button
           className={style.colorButton}
           style={{
-            backgroundColor: `rgba(${guiStyle.color.r},${guiStyle.color.g},${guiStyle.color.b},${guiStyle.color.a})`,
+            backgroundColor: guiStyle.color,
           }}
           ref={buttonRef}
         />
         {isOpen && (
           <div className={style.colorModal} ref={modalRef}>
-            <RgbaColorPicker
+            <HexColorPicker
               color={guiStyle.color}
               onChange={(color) => {
                 setGuiStyle((prevState) => ({
                   ...prevState,
-                  color: color,
+                  color: color.toUpperCase(),
                 }))
               }}
             />
-            <div className='flex mt-3 gap-x-3'>
-              <button
-                className={`${style.colorButton} bg-gray !border-none`}
-                onClick={() => handleClickPalette({ r: 194, g: 201, b: 204, a: 1 })}
-              />
-              <button
-                className={`${style.colorButton} bg-yellow !border-none`}
-                onClick={() => handleClickPalette({ r: 245, g: 216, b: 73, a: 1 })}
-              />
-              <button
-                className={`${style.colorButton} bg-brown !border-none`}
-                onClick={() => handleClickPalette({ r: 178, g: 143, b: 107, a: 1 })}
-              />
-              <button
-                className={`${style.colorButton} bg-blue !border-none`}
-                onClick={() => handleClickPalette({ r: 61, g: 135, b: 204, a: 1 })}
-              />
-              <button
-                className={`${style.colorButton} bg-orange !border-none`}
-                onClick={() => handleClickPalette({ r: 255, g: 92, b: 56, a: 1 })}
-              />
-              <button
-                className={`${style.colorButton} bg-green !border-none`}
-                onClick={() => handleClickPalette({ r: 54, g: 185, b: 67, a: 1 })}
-              />
+            <input
+              className='w-full py-2'
+              type='text'
+              value={guiStyle.color}
+              maxLength={7}
+              pattern='[A-Fa-f0-9]{6}'
+              onChange={(e) => {
+                if (e.target.value[0] !== '#') {
+                  e.target.value = '#' + e.target.value
+                }
+                setGuiStyle((prevState) => ({
+                  ...prevState,
+                  color: e.target.value.toUpperCase(),
+                }))
+              }}
+            />
+            <div className='flex mt-[3px] gap-x-[3px]'>
+              {swatchList.map((color) => (
+                <button
+                  key={color}
+                  className={style.colorSwatch}
+                  onClick={() => handleClickPalette(color)}
+                  style={{
+                    backgroundColor: color,
+                  }}
+                />
+              ))}
             </div>
           </div>
         )}

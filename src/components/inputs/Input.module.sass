@@ -63,13 +63,45 @@
   .colorModal
     position: absolute
     z-index: 10
-    left: 1.2rem
-    top: calc(100% + .4rem)
-    transform: translateX(-50%)
-    padding: 1rem 1rem .7rem
-    border-radius: 6px
+    right: calc(100% + .4rem)
+    top: 0
+    padding: 1rem .8rem
+    border-radius: 5px
     background: white
-    border: solid 1px var(--color-text)
+    border: solid 1px var(--color-gray)
+    @media screen and (max-width: 800px)
+      top: calc(100% + .4rem)
+      right: auto
+      transform: translateX(-50%)
+      left: 1.2rem
+
+    .colorSwatch
+      border-radius: 2px
+      flex: 1
+      width: auto
+      border: none
+      aspect-ratio: 1/1
+      box-shadow: none
+
+    :global(.react-colorful)
+      width: 180px
+      height: 170px
+
+    :global(.react-colorful__pointer)
+      width: 18px
+      height: 18px
+
+    :global(.react-colorful__saturation)
+      border-radius: 3px 3px 0 0 !important
+      box-shadow: none
+      border-bottom: 6px !important
+
+    :global(.react-colorful__hue)
+      border-radius: 0 0 3px 3px!important
+
+    :global(.react-colorful__alpha),
+    :global(.react-colorful__hue)
+      height: 20px
 
   .unitModal
     position: absolute

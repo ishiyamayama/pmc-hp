@@ -1,4 +1,4 @@
-import { useEffect, useState, useId, useRef } from 'react'
+import { useEffect, useState, useId, useRef, ChangeEvent } from 'react'
 const unitList = ['px', 'rem', 'em', 'vh', 'vw', 'vmin', 'vmax', '%']
 import { useRecoilState } from 'recoil'
 import style from './Input.module.sass'
@@ -12,8 +12,7 @@ export const LetterSpacing = () => {
   const id = useId()
   const ulRef = useRef<HTMLUListElement>(null)
 
-  const handleChangeInput = (e: any) => {
-
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setGuiStyle((prevState) => ({
       ...prevState,
       letterSpacing: {
@@ -53,7 +52,7 @@ export const LetterSpacing = () => {
         <input
           className={style.input}
           type='number'
-          step="0.1"
+          step='0.1'
           placeholder='0'
           id={id}
           value={guiStyle.letterSpacing.value === 0 ? '' : guiStyle.letterSpacing.value}
