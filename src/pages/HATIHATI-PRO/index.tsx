@@ -20,7 +20,7 @@ export const getStaticProps = async () => {
   const { overview } = await fetchOverview()
   return {
     props: { overview },
-    revalidate: 20,
+    revalidate: 10,
   }
 }
 
