@@ -62,10 +62,7 @@ export const FontFamily = () => {
     <div className={style.container}>
       <link
         rel='stylesheet'
-        href={`https://fonts.googleapis.com/css2?family=${guiStyle.fontFamily.replace(
-          /\s/g,
-          '+',
-        )}:wght@400`}
+        href={`https://fonts.googleapis.com/css2?family=${guiStyle.fontFamily.replace(/\s/g,'+',)}:wght@400`}
       />
       <label htmlFor={id} className={style.label}>
         Font Family
